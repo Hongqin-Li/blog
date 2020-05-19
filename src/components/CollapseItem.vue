@@ -1,7 +1,7 @@
 <template>
   <div>
     <div @click="open = !open">
-      <slot name="item" />
+      <slot name="item" :open="open" />
     </div>
     <input type="checkbox" class="trigger" v-model="open"/>
     <div
