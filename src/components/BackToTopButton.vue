@@ -15,6 +15,7 @@ import throttle from "lodash/throttle";
 export default {
   created() {
     this.tOnScroll = throttle(this.onScroll, 500);
+    this.tOnScroll();
   },
   mounted() {
     window.addEventListener("scroll", this.tOnScroll);
