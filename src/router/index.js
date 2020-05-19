@@ -1,13 +1,13 @@
 import Vue from "vue";
 import VueRouter from "vue-router";
-import BaseView from "../views/BaseView.vue";
+import DocView from "../views/DocView.vue";
 
 Vue.use(VueRouter);
 
 const routes = [
   {
-    path: "/",
-    component: BaseView,
+    path: "/doc",
+    component: DocView,
   },
 ];
 
