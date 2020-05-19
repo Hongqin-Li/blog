@@ -5,6 +5,7 @@
 body * {
   box-sizing: border-box;
 }
+::selection { background: rgba(0, 0, 0, .08); }
 input::-ms-clear{ display:none; }
 a { 
   color: inherit;
