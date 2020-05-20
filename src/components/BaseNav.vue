@@ -1,5 +1,5 @@
 <template>
-  <nav>
+  <div>
     <collapse-item v-for="t in items" :key="t.name" :box-height="t.children ? t.children.length*1.8 + 'em': '0'">
       <template v-slot:item="{ open }">
         <div class="list-item">
@@ -17,7 +17,7 @@
         </div>
       </template>
     </collapse-item>
-  </nav>
+  </div>
 </template>
 
 <script>

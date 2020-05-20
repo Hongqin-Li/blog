@@ -4,16 +4,23 @@
 
 
       <main class="mark">
-        <h3>Hello</h3>
-        <p>
-Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
-        </p>
+
+        <h1 class="doc-title">{{ title }}</h1>
+        <div class="doc-tag"><base-tag :items="tags"/></div>
+        <p class="doc-info">{{ time }}</p>
+
+        <div class="mark" v-html="html" style="margin: 0;"/>
 
       </main>
       
-      <nav>
-        <base-nav class="landscape-only"/>
-        <base-tag class="basetag-container"/>
+      <nav class="mark">
+        <h4 style="margin-bottom: .5rem;">Categories</h4>
+        <base-nav/>
+        <h4 style="margin-bottom: .8rem;">Tags</h4>
+        <div>
+          <base-tag class="basetag-container"/>
+        </div>
+
       </nav>
 
       <back-to-top-button />
@@ -27,7 +34,28 @@ import BaseNav from "@/components/BaseNav";
 import BaseTag from "@/components/BaseTag";
 import BackToTopButton from "@/components/BackToTopButton";
 
+import api from "@/obj/api";
+
 export default {
+  created() {
+    this.refresh();
+  },
+  data: () => ({
+    title: "Static Blog Generator",
+    time: "Edited on 2020.5.19 - 5 minutes",
+    tags: [ {name: "css", to: "/tags/css",}, {name: "blog", to: "/tags/blog"}],
+    html: "<p>xxxx</p><h2>Hello</h2>"
+  }),
+  methods: {
+    refresh() {
+      
+      console.log(this.$route.path, api);
+      api[this.$route.path]().then(({default: d}) => {
+        this.title = d["title"];
+        this.html = d["html"];
+      });
+    },
+  },
   components: {
     BaseView,
     BaseNav,
@@ -55,35 +83,35 @@ export default {
     max-width: 71%;
     width: 100%;
     flex-shrink: 0;
+    overflow: hidden;
   }
   > nav {
-    padding-top: 2rem;
     flex-grow: 1;
     overflow: hidden;
   }
   
   @include portrait() {
     flex-direction: column;
-    padding: 1rem 0;
+    padding: 0;
     > main {
       margin-right: 0;
       max-width: 100vw;
     }
     > nav {
-      padding-top: 0;
+      border-top: 1px solid rgba(0, 0, 0, $divider-opacity);
     }
   }
 
 }
 
-.basetag-container {
-  margin-top: 1rem;
-  border-top: 1px solid rgba(0, 0, 0, $divider-opacity);
-  padding-top: 1rem;
-  @include portrait {
-    border-top: none;
-    margin-top: 0;
-  }
+.doc-title {
+  display: inline-block;
+  margin-bottom: .2em !important;
+}
+.doc-tag {
+  margin-bottom: 1em !important;
+}
+.doc-info {
 }
 
 </style>

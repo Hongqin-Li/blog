@@ -8,9 +8,11 @@ body * {
 ::selection { background: rgba(0, 0, 0, .08); }
 input::-ms-clear{ display:none; }
 a { 
-  color: inherit;
+  color: #0070c9;
   text-decoration: none;
+  &:hover { text-decoration: underline; }
 }
+blockquote { margin: 0; }
 textarea { resize: none; }
 
 // REM

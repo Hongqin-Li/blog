@@ -1,19 +1,19 @@
-PARSER := ./docs/parse.py
+BUILD_DIR ?= src/obj
+SRC_DIRS ?= docs
 
-BUILD_DIR ?= ./src/obj
-SRC_DIRS ?= ./docs
+API_GENERATOR ?= genapi.py
+MD_PARSER ?= parse.py
 
-ROUTE := route.js
+SRCS := $(shell find $(SRC_DIRS) -name "*.md" -not -name "README.md")
+OBJS := $(SRCS:%.md=$(BUILD_DIR)/%.json)
 
-SRCS := $(shell find $(SRC_DIRS) -name *.md)
-OBJS := $(SRCS:%.md=$(BUILD_DIR)/%.vue)
+$(BUILD_DIR)/api.js: $(OBJS) $(API_GENERATOR)
+	@$(MKDIR_P) $(dir $@)
+	echo -n $(SRCS) | python $(API_GENERATOR) > $@
 
-$(BUILD_DIR)/$(ROUTE): $(OBJS)
-	echo $^ | python $(ROUTE_GENERATOR) > $@
-
-$(BUILD_DIR)/%.vue: %.md $(PARSER)
-	$(MKDIR_P) $(dir $@)
-	cat $< | python $(PARSER) > $@
+$(BUILD_DIR)/%.json: %.md $(MD_PARSER)
+	@$(MKDIR_P) $(dir $@)
+	echo -n $< | python $(MD_PARSER) > $@
 
 .PHONY: clean dev build
 

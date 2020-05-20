@@ -6,7 +6,7 @@ Vue.use(VueRouter);
 
 const routes = [
   {
-    path: "/doc",
+    path: "/docs/*",
     component: DocView,
   },
 ];
