@@ -5,7 +5,7 @@
 
       <main class="mark">
 
-        <h1 class="doc-title">{{ title }}</h1>
+        <h2 class="doc-title">{{ title }}</h2>
         <div class="doc-tag"><base-tag :items="tags"/></div>
         <p class="doc-info">{{ time }}</p>
 
@@ -17,8 +17,8 @@
         <h4 style="margin-bottom: .5rem;">Categories</h4>
         <base-nav/>
         <h4 style="margin-bottom: .8rem;">Tags</h4>
-        <div>
-          <base-tag class="basetag-container"/>
+        <div class="base-tag-container">
+          <base-tag/>
         </div>
 
       </nav>
@@ -109,9 +109,14 @@ export default {
   margin-bottom: .2em !important;
 }
 .doc-tag {
-  margin-bottom: 1em !important;
+  margin-bottom: 1em;
+  margin-top: 1em;
 }
 .doc-info {
+}
+
+.base-tag-container {
+  margin-bottom: 3rem;
 }
 
 </style>

@@ -13,7 +13,7 @@
       </template>
       <template v-slot:box>
         <div v-for="c in t.children" :key="c.to" class="list-subitem">
-          <router-link :to="c.to" class="single-line">{{ c.name }}</router-link>
+          <div @click="if (c.to) $router.push(c.to);" class="single-line">{{ c.name }}</div>
         </div>
       </template>
     </collapse-item>
@@ -60,7 +60,6 @@ $indent: 1.6em;
   height: $slot-height;
   display: flex;
   align-items: center;
-  opacity: $active-opacity;
   cursor: pointer;
 
 
@@ -86,7 +85,6 @@ $indent: 1.6em;
   justify-content: center;
   > i {
     font-size: 1.2em;
-    color: rgba(0, 0, 0, $active-opacity);
     transform: rotate(0deg);
     transition: transform 0.5s cubic-bezier(0.28, 0.11, 0.32, 1) 0.4s;
   }
