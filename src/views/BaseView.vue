@@ -5,7 +5,8 @@
     :result="searchResult"
     :loading="loading"
     :fullwidth="fullwidth"
-    v-model="input">
+    v-model="input"
+  >
     <slot />
   </base-layout>
 </template>
@@ -26,12 +27,12 @@ export default {
       routes: [
         { name: "日程", to: "/schedule" },
         { name: "课程", to: "/explore" },
-        { name: "登入", to: "/login?go=-1" },
+        { name: "登入", to: "/login?go=-1" }
       ],
       searchResult: [],
       loading: false,
-      input: "",
-    }
+      input: ""
+    };
   },
   watch: {
     input: function(val) {
@@ -47,10 +48,9 @@ export default {
     }
   },
   components: {
-    BaseLayout,
-  },
-}
+    BaseLayout
+  }
+};
 </script>
 
-<style lang="scss" scoped>
-</style>
+<style lang="scss" scoped></style>

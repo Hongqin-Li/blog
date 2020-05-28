@@ -1,26 +1,31 @@
 <template>
   <!-- Header footer main layout -->
   <div class="hmf--dense" style="background: #fafafa;">
-
     <transition name="fade">
-      <material-loader 
+      <material-loader
         v-show="loading"
         style="
         position: fixed;
         bottom: 1rem;
         right: 1rem;
         z-index: 11;
-      "/>
+      "
+      />
     </transition>
 
     <!-- Landscape Top Bar -->
     <header class="header--landscape">
       <div style="height: 3rem; align-items: center;">
-        <span>{{title}}</span>
+        <span>{{ title }}</span>
 
         <span
-          class="right-start search-span" 
-          v-click-outside="{ handler: () => { openSearch = false; }, isActive: openSearch }"
+          class="right-start search-span"
+          v-click-outside="{
+            handler: () => {
+              openSearch = false;
+            },
+            isActive: openSearch
+          }"
         >
           <input
             ref="input"
@@ -28,19 +33,19 @@
             spellcheck="false"
             placeholder="Search..."
             class="search-dropdown__input"
-            :class="{'search-dropdown__input-active': openSearch }"
+            :class="{ 'search-dropdown__input-active': openSearch }"
             v-model="searchInput"
           />
-          <div 
-            class="search-dropdown__container"
-            :style="{'--nslots': 7 }"
-          >
+          <div class="search-dropdown__container" :style="{ '--nslots': 7 }">
             <div>
-
-              <collapse-item v-for="t in result" :key="t.name" :box-height="t.children ? t.children.length * 2.5 + 'em': '0'">
+              <collapse-item
+                v-for="t in result"
+                :key="t.name"
+                :box-height="t.children ? t.children.length * 2.5 + 'em' : '0'"
+              >
                 <template v-slot:item>
                   <div class="list-item">
-                    <div>{{t.name}}</div>
+                    <div>{{ t.name }}</div>
                   </div>
                 </template>
                 <template v-slot:box>
@@ -49,12 +54,12 @@
                   </div>
                 </template>
               </collapse-item>
-
             </div>
           </div>
-          <span v-for="r in routes" :key="r.name"><router-link :to="r.to">{{r.name}}</router-link></span>
-          <label class="search-span__trigger"
-            @click="handleOpenSearch"
+          <span v-for="r in routes" :key="r.name"
+            ><router-link :to="r.to">{{ r.name }}</router-link></span
+          >
+          <label class="search-span__trigger" @click="handleOpenSearch"
             ><i class="search-icon"></i
           ></label>
         </span>
@@ -74,7 +79,7 @@
     >
       <!-- header row 1 -->
       <div style="height: 3em; align-items: center;">
-        <span>{{title}}</span>
+        <span>{{ title }}</span>
         <label class="switch--arrow right-start">
           <input type="checkbox" v-model="openDropdown" /><span></span>
         </label>
@@ -93,33 +98,52 @@
             --slot-height: 2.5em;
             --dropdown-height: calc(100vh - 5.5rem);
           "
-          :class="{'search-span--portrait-active': openSearchPortrait }"
-          v-click-outside="{ handler: () => { openSearchPortrait = false; }, isActive: openSearchPortrait }"
+          :class="{ 'search-span--portrait-active': openSearchPortrait }"
+          v-click-outside="{
+            handler: () => {
+              openSearchPortrait = false;
+            },
+            isActive: openSearchPortrait
+          }"
           @click="handleOpenSearchPortrait"
         >
-          <input v-model="searchInput" type="text" placeholder="Search..." ref="inputPortrait"/>
+          <input
+            v-model="searchInput"
+            type="text"
+            placeholder="Search..."
+            ref="inputPortrait"
+          />
           <div>
             <div>
-              <collapse-item v-for="t in result" :key="t.name" :box-height="t.children ? t.children.length * 2.5 + 'em': '0'">
+              <collapse-item
+                v-for="t in result"
+                :key="t.name"
+                :box-height="t.children ? t.children.length * 2.5 + 'em' : '0'"
+              >
                 <template v-slot:item>
                   <div class="list-item--portrait">
-                    <div>{{t.name}}</div>
+                    <div>{{ t.name }}</div>
                   </div>
                 </template>
                 <template v-slot:box>
-                  <div v-for="c in t.children" :key="c.to" class="list-subitem--portrait">
+                  <div
+                    v-for="c in t.children"
+                    :key="c.to"
+                    class="list-subitem--portrait"
+                  >
                     <router-link :to="c.to">{{ c.name }}</router-link>
                   </div>
                 </template>
               </collapse-item>
-
             </div>
           </div>
         </span>
 
         <nav class="nav-menu--light" style="width: 100%; border: none;">
           <ul>
-            <li v-for="r in routes" :key="r.name"><router-link :to="r.to">{{r.name}}</router-link></li>
+            <li v-for="r in routes" :key="r.name">
+              <router-link :to="r.to">{{ r.name }}</router-link>
+            </li>
           </ul>
         </nav>
       </div>
@@ -139,8 +163,8 @@
     <footer>
       <base-footer>
         <template v-slot:intro>
-            Designed and Built by Mr. Foo<br />
-            Powered by <a>Light Minimalism</a>
+          Designed and Built by Mr. Foo<br />
+          Powered by <a>Light Minimalism</a>
         </template>
         <template v-slot:links>
           <a>F.A.Q</a>
@@ -163,7 +187,7 @@ import BaseFooter from "@/components/BaseFooter";
 import MaterialLoader from "@/components/MaterialLoader";
 import CollapseItem from "@/components/CollapseItem";
 
-import vClickOutside from 'v-click-outside'
+import vClickOutside from "v-click-outside";
 
 export default {
   directives: {
@@ -173,42 +197,40 @@ export default {
     // fullwidth for main(without max-width)
     fullwidth: {
       type: Boolean,
-      default: false,
+      default: false
     },
     title: {
       type: String,
-      default: "TODAY",
+      default: "TODAY"
     },
     routes: {
       type: Array,
       default: () => [
         { name: "课表", to: "/explore" },
         { name: "课程", to: "/explore" },
-        { name: "登入", to: "/login" },
-      ],
+        { name: "登入", to: "/login" }
+      ]
     },
     result: {
       type: Array,
       default: () => [
-        { name: "To Explore", to: "", children: [
-          { name: "sub", to: "/kk", }
-        ]},
-      ],
+        { name: "To Explore", to: "", children: [{ name: "sub", to: "/kk" }] }
+      ]
     },
     loading: {
       type: Boolean,
-      default: false,
+      default: false
     },
     value: {
       type: String,
-      default: "",
-    },
+      default: ""
+    }
   },
   created: function() {
     this.tOnScroll = throttle(this.onScroll, 500);
   },
   watch: {
-    "$route": function() {
+    $route: function() {
       this.openSearch = false;
       this.openSearchPortrait = false;
       this.openDropdown = false;
@@ -243,8 +265,7 @@ export default {
       setTimeout(() => {
         this.$refs.inputPortrait.focus();
       }, 1000);
-    },
-
+    }
   },
   data() {
     return {
@@ -254,26 +275,26 @@ export default {
       lastScrollPosition: 0,
       showTopbar: true,
 
-      searchInput: "",
+      searchInput: ""
     };
   },
   components: {
     MaterialLoader,
     BaseFooter,
-    CollapseItem,
+    CollapseItem
   }
 };
 </script>
 
 <style lang="scss" scoped>
-
 @import "@/scss/utils.scss";
 
-.fade-enter-active, .fade-leave-active {
-  transition: opacity .2s;
+.fade-enter-active,
+.fade-leave-active {
+  transition: opacity 0.2s;
 }
 .fade-enter-active {
-  transition-delay: .2s;
+  transition-delay: 0.2s;
 }
 .fade-enter, .fade-leave-to /* .fade-leave-active below version 2.1.8 */ {
   opacity: 0;
@@ -282,7 +303,7 @@ export default {
   width: 1em;
   height: 2.75em;
   background: center no-repeat
-  url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 44'%3E%3Cpath d='M15.27 28.29l-4.06-4.06a6.113 6.113 0 0 0 1.35-3.83c0-3.39-2.76-6.15-6.15-6.15-3.39 0-6.15 2.76-6.15 6.15s2.76 6.15 6.15 6.15c1.43 0 2.75-.5 3.8-1.33l4.06 4.06 1-.99zM6.4 25.33a4.93 4.93 0 0 1-4.92-4.92c0-2.71 2.2-4.92 4.92-4.92s4.92 2.21 4.92 4.92c.01 2.71-2.2 4.92-4.92 4.92z' fill='%23666666'/%3E%3C/svg%3E");
+    url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 44'%3E%3Cpath d='M15.27 28.29l-4.06-4.06a6.113 6.113 0 0 0 1.35-3.83c0-3.39-2.76-6.15-6.15-6.15-3.39 0-6.15 2.76-6.15 6.15s2.76 6.15 6.15 6.15c1.43 0 2.75-.5 3.8-1.33l4.06 4.06 1-.99zM6.4 25.33a4.93 4.93 0 0 1-4.92-4.92c0-2.71 2.2-4.92 4.92-4.92s4.92 2.21 4.92 4.92c.01 2.71-2.2 4.92-4.92 4.92z' fill='%23666666'/%3E%3C/svg%3E");
 }
 
 .topbar--hidden {
@@ -300,7 +321,10 @@ export default {
   width: 100%;
   transform: translateY(0);
 
-  &, & > div {overflow: hidden;}
+  &,
+  & > div {
+    overflow: hidden;
+  }
 }
 .header--landscape {
   z-index: 10;
@@ -445,7 +469,6 @@ nav.nav-menu--light {
     margin-right: auto;
   }
 
-
   //dense appbar
   > div {
     position: relative;
@@ -543,7 +566,7 @@ nav.nav-menu--light {
     display: flex;
     flex-direction: column;
     align-items: center;
-    background-color: rgba(black, .03);
+    background-color: rgba(black, 0.03);
   }
 }
 
@@ -625,7 +648,7 @@ nav.nav-menu--light {
     transform: translateX(-100px);
     //transition: transform 1s cubic-bezier(0.12, 0.87, 0.15, 1) .4s;
     transition: transform 1s cubic-bezier(0.12, 0.87, 0.15, 1) 0.4s,
-      opacity .4s cubic-bezier(0.67, 0, 0.33, 1) 0s;
+      opacity 0.4s cubic-bezier(0.67, 0, 0.33, 1) 0s;
   }
 
   // Background menu item
@@ -639,7 +662,7 @@ nav.nav-menu--light {
   > input ~ span,
   > input ~ label {
     //color: black;
-    font-size: .9rem;
+    font-size: 0.9rem;
     cursor: pointer;
 
     opacity: 1;
@@ -656,33 +679,32 @@ nav.nav-menu--light {
 
 $slot-height: 2.5em;
 .search-dropdown__container {
-    @include button2span;
+  @include button2span;
 
-    --nslots: 3;
-    --slot-height: #{$slot-height};
+  --nslots: 3;
+  --slot-height: #{$slot-height};
 
-    display: block;
-    position: absolute;
-    top: 3rem; // 1px for header border
-    left: 0;
+  display: block;
+  position: absolute;
+  top: 3rem; // 1px for header border
+  left: 0;
+  width: 100%;
+  overflow: hidden;
+  background: white;
+  border: 1px solid #e0e0e0;
+  font-size: 0.8em;
+
+  > div {
+    @include no-scrollbar;
+    overflow-y: auto;
+
+    height: var(--dropdown-height, calc(var(--nslots) * var(--slot-height)));
     width: 100%;
-    overflow: hidden;
-    background: white;
-    border: 1px solid #e0e0e0;
-    font-size: .8em;
-
-    > div {
-      @include no-scrollbar;
-      overflow-y: auto;
-
-      height: var(--dropdown-height, calc(var(--nslots) * var(--slot-height)));
-      width: 100%;
-
-    }
+  }
 }
 
-.list-item, .list-subitem {
-
+.list-item,
+.list-subitem {
   height: $slot-height;
   display: flex;
   align-items: center;
@@ -701,7 +723,7 @@ $slot-height: 2.5em;
   }
 
   &:hover {
-    background-color: rgba(0, 0, 0, .03);
+    background-color: rgba(0, 0, 0, 0.03);
   }
 }
 // indent
@@ -711,36 +733,36 @@ $slot-height: 2.5em;
 
 // Dropdown Animation
 $hide-delay: 0.2s;
-$show-delay: .3s;
+$show-delay: 0.3s;
 $height: var(--dropdown-height, calc(var(--nslots) * var(--slot-height)));
 .search-dropdown__input {
-
-    + .search-dropdown__container {
-        visibility: hidden;
-        height: 0;
-        opacity: 0;
-        transform-origin: top center;
-        transition: height 0.5s cubic-bezier(0.28, 0.11, 0.32, 1) $hide-delay+.2s,
-                    opacity .2s cubic-bezier(0.23, 1, 0.32, 1) $hide-delay,
-                    visibility 0s $hide-delay+.2s;
-        > div {
-            transform: translateY(-6*3rem); 
-            opacity: 0;
-            transition: transform 0s cubic-bezier(0.23, 1, 0.32, 1) $hide-delay+0.2s, 
-                        opacity 0s cubic-bezier(0.23, 1, 0.32, 1) $hide-delay+0.2s;
-        }
- 
+  + .search-dropdown__container {
+    visibility: hidden;
+    height: 0;
+    opacity: 0;
+    transform-origin: top center;
+    transition: height 0.5s cubic-bezier(0.28, 0.11, 0.32, 1) $hide-delay + 0.2s,
+      opacity 0.2s cubic-bezier(0.23, 1, 0.32, 1) $hide-delay,
+      visibility 0s $hide-delay + 0.2s;
+    > div {
+      transform: translateY(-6 * 3rem);
+      opacity: 0;
+      transition: transform 0s cubic-bezier(0.23, 1, 0.32, 1) $hide-delay + 0.2s,
+        opacity 0s cubic-bezier(0.23, 1, 0.32, 1) $hide-delay + 0.2s;
     }
+  }
 }
 
 .search-dropdown__input-active {
-  &, & + i {
+  &,
+  & + i {
     opacity: $active-opacity !important;
     transform: translateX(0) !important;
     transition: transform 1s cubic-bezier(0.12, 0.87, 0.15, 1) 0.4s,
-      opacity .4s cubic-bezier(0.67, 0, 0.33, 1) 0.4s !important;
+      opacity 0.4s cubic-bezier(0.67, 0, 0.33, 1) 0.4s !important;
   }
-  & ~ span, & ~ label {
+  & ~ span,
+  & ~ label {
     pointer-events: none !important;
     opacity: 0 !important;
     transform: scale(0.7) !important;
@@ -753,17 +775,16 @@ $height: var(--dropdown-height, calc(var(--nslots) * var(--slot-height)));
     opacity: 1 !important;
 
     transition: height 0.5s cubic-bezier(0.28, 0.11, 0.32, 1) $show-delay,
-                opacity .2s cubic-bezier(0.23, 1, 0.32, 1) $show-delay,
-                visibility 0s $show-delay !important;
+      opacity 0.2s cubic-bezier(0.23, 1, 0.32, 1) $show-delay,
+      visibility 0s $show-delay !important;
     > div {
-        transform: translateY(0) !important;
-        opacity: 1 !important;
-        transition: transform 1s cubic-bezier(0.23, 1, 0.32, 1) $show-delay, 
-                    opacity 0.7s cubic-bezier(0.23, 1, 0.32, 1) $show-delay+0.2s !important;
+      transform: translateY(0) !important;
+      opacity: 1 !important;
+      transition: transform 1s cubic-bezier(0.23, 1, 0.32, 1) $show-delay,
+        opacity 0.7s cubic-bezier(0.23, 1, 0.32, 1) $show-delay + 0.2s !important;
     }
   }
 }
-
 
 .search-span--portrait {
   // Defined by user
@@ -847,7 +868,6 @@ $height: var(--dropdown-height, calc(var(--nslots) * var(--slot-height)));
     transition: z-index 0s 0.7s;
   }
 
-
   // Dropdown Animation
   & > div {
     visibility: hidden;
@@ -877,7 +897,10 @@ $height: var(--dropdown-height, calc(var(--nslots) * var(--slot-height)));
     & ~ div {
       visibility: visible !important;
       opacity: 1 !important;
-      height: var(--dropdown-height, calc(var(--nslots) * var(--slot-height))) !important;
+      height: var(
+        --dropdown-height,
+        calc(var(--nslots) * var(--slot-height))
+      ) !important;
 
       transition: height 0.5s cubic-bezier(0.28, 0.11, 0.32, 1), opacity 0s,
         visibility 0s !important;
@@ -891,8 +914,8 @@ $height: var(--dropdown-height, calc(var(--nslots) * var(--slot-height)));
   }
 }
 
-.list-item--portrait, .list-subitem--portrait {
-
+.list-item--portrait,
+.list-subitem--portrait {
   height: $slot-height;
   display: flex;
   align-items: center;
@@ -918,7 +941,6 @@ $height: var(--dropdown-height, calc(var(--nslots) * var(--slot-height)));
 .list-subitem--portrait > * {
   padding-left: 2em;
 }
-
 
 // The arrow trigger in the topbar
 .switch--arrow {

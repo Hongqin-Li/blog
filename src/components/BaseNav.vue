@@ -1,19 +1,33 @@
 <template>
   <div>
-    <collapse-item v-for="t in items" :key="t.name" :box-height="t.children ? t.children.length*1.8 + 'em': '0'">
+    <collapse-item
+      v-for="t in items"
+      :key="t.name"
+      :box-height="t.children ? t.children.length * 1.8 + 'em' : '0'"
+    >
       <template v-slot:item="{ open }">
         <div class="list-item">
-          <div @click="if (t.to) $router.push(t.to);">
-            <div class="list-item-anchor" :class="{ 'list-item-anchor-active': open }">
-              <i v-if="t.children" class="material-icons-round">keyboard_arrow_right</i>
+          <div @click="if (t.to && t.to !== $route.path) $router.push(t.to);">
+            <div
+              class="list-item-anchor"
+              :class="{ 'list-item-anchor-active': open }"
+            >
+              <i v-if="t.children" class="material-icons-round"
+                >keyboard_arrow_right</i
+              >
             </div>
-            <div class="single-line">{{t.name}}</div>
+            <div class="single-line">{{ t.name }}</div>
           </div>
         </div>
       </template>
       <template v-slot:box>
         <div v-for="c in t.children" :key="c.to" class="list-subitem">
-          <div @click="if (c.to) $router.push(c.to);" class="single-line">{{ c.name }}</div>
+          <div
+            @click="if (c.to && c.to !== $route.path) $router.push(c.to);"
+            class="single-line"
+          >
+            {{ c.name }}
+          </div>
         </div>
       </template>
     </collapse-item>
@@ -29,18 +43,18 @@ export default {
       type: Array,
       default: () => [
         {
-          name: "Item with children", children: [
-            { name: "subitem 1", to: "/", },
-          ],
+          name: "Item with children",
+          children: [{ name: "subitem 1", to: "/" }]
         },
         {
-          name: "Item without children and overflow", to: "/kk",
-        },
-      ],
+          name: "Item without children and overflow",
+          to: "/kk"
+        }
+      ]
     }
   },
   components: { CollapseItem }
-}
+};
 </script>
 
 <style lang="scss" scoped>
@@ -54,14 +68,14 @@ export default {
 
 $slot-height: 1.8em;
 $indent: 1.6em;
-.list-item, .list-subitem {
+.list-item,
+.list-subitem {
   @include no-select;
 
   height: $slot-height;
   display: flex;
   align-items: center;
   cursor: pointer;
-
 
   > * {
     flex-grow: 1;
@@ -72,8 +86,8 @@ $indent: 1.6em;
   }
 
   &:hover > * {
-    background-color: rgba(0, 0, 0, .03);
-    border-radius: .3em;
+    background-color: rgba(0, 0, 0, 0.03);
+    border-radius: 0.3em;
   }
 }
 .list-item-anchor {
@@ -92,7 +106,7 @@ $indent: 1.6em;
 .list-item-anchor-active {
   > i {
     transform: rotate(90deg);
-    transition-delay: .2s;
+    transition-delay: 0.2s;
   }
 }
 
@@ -101,6 +115,4 @@ $indent: 1.6em;
   padding: 0 $indent;
 }
 // REMOVE END
-
-
 </style>

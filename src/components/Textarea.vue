@@ -1,6 +1,6 @@
 <template>
   <div class="textarea-container">
-    <textarea 
+    <textarea
       v-bind="$props"
       @input="handleInput($event.target.value)"
     ></textarea>
@@ -10,13 +10,13 @@
 
 <script>
 export default {
-  props: ['value', 'rows', 'cols', 'disabled', 'placeholder'],
+  props: ["value", "rows", "cols", "disabled", "placeholder"],
   methods: {
     handleInput(val) {
-      this.$emit('input', val);
+      this.$emit("input", val);
     }
   }
-}
+};
 </script>
 
 <style lang="scss" scoped>
@@ -24,8 +24,7 @@ export default {
 .textarea-container {
   @include input(black);
   > textarea {
-    overflow-x: hidden;// FIX: firefox
+    overflow-x: hidden; // FIX: firefox
   }
 }
-
 </style>

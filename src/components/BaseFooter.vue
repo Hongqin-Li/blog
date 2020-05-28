@@ -2,52 +2,36 @@
   <div>
     <div class="footer-row">
       <div class="intro">
-
-
         <slot name="intro">
           Designed and Built by Mr. Foo<br />
           Powered by <a>Light Minimalism</a>
         </slot>
-
-
       </div>
       <div class="link">
-
-
         <slot name="links">
           <a>F.A.Q</a>
           <a>Contact Us</a>
           <a>Join Us</a>
         </slot>
-
-
       </div>
     </div>
 
     <div class="footer-row">
       <div class="intro">
-
-
         <slot name="copyright">
           Copyright © 2020 Today. All rights reserved.
         </slot>
-
-
       </div>
     </div>
   </div>
- 
 </template>
 
 <script>
 export default {
   data: function() {
-    return {
-    
-    }
-  },
-
-}
+    return {};
+  }
+};
 </script>
 
 <style lang="scss" scoped>
@@ -99,6 +83,4 @@ export default {
     }
   }
 }
-
-
 </style>

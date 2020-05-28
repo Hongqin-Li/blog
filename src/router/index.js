@@ -7,8 +7,8 @@ Vue.use(VueRouter);
 const routes = [
   {
     path: "/docs/*",
-    component: DocView,
-  },
+    component: DocView
+  }
 ];
 
 const router = new VueRouter({

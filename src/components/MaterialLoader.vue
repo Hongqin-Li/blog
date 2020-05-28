@@ -1,16 +1,16 @@
 <template>
-  <div class="loader"
-    :style="{'width': `${size}`}"
-  >
+  <div class="loader" :style="{ width: `${size}` }">
     <svg class="circular" viewBox="25 25 50 50">
-      <circle 
-        class="path" 
-        cx="50" cy="50" r="20" 
-        fill="none" 
+      <circle
+        class="path"
+        cx="50"
+        cy="50"
+        r="20"
+        fill="none"
         stroke-miterlimit="10"
-        :stroke-width="strokeWidth" 
-        :stroke="color" 
-        :class="{'path--colorful': colorful,}"
+        :stroke-width="strokeWidth"
+        :stroke="color"
+        :class="{ 'path--colorful': colorful }"
       />
     </svg>
   </div>
@@ -20,20 +20,20 @@ export default {
   props: {
     strokeWidth: {
       type: Number,
-      default: 4,
+      default: 4
     },
     size: {
       type: String,
-      default: "2em",
+      default: "2em"
     },
     color: {
       type: String,
-      default: "#333333",
+      default: "#333333"
     },
     colorful: {
       type: Boolean,
-      default: true,
-    },
+      default: true
+    }
   }
 };
 </script>
@@ -50,7 +50,7 @@ $white: #eee;
   margin: 0 auto;
   width: 2em;
   &:before {
-    content: '';
+    content: "";
     display: block;
     padding-top: 100%;
   }

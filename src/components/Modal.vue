@@ -1,8 +1,5 @@
-
 <template>
-  <div class="modal"
-    :class="{ 'modal-shown': show }"
-  >
+  <div class="modal" :class="{ 'modal-shown': show }">
     <div class="modal-back-trigger" @click="handleClose"></div>
     <div class="modal-content">
       <slot />
@@ -10,29 +7,28 @@
   </div>
 </template>
 
-
 <script>
 export default {
   props: {
-    value: Boolean,
+    value: Boolean
   },
   data: function() {
     return {
-      show: false,
-    }
+      show: false
+    };
   },
   watch: {
     value: function(val) {
       this.show = val;
-    },
+    }
   },
   methods: {
     handleClose: function() {
       this.show = false;
-      this.$emit('input', this.show);
+      this.$emit("input", this.show);
     }
   }
-}
+};
 </script>
 
 <style lang="scss" scoped>
@@ -54,16 +50,17 @@ export default {
   visibility: hidden;
 
   opacity: 0;
-  transition: transform 0s 0s, opacity 0.7s cubic-bezier(0.23, 1, 0.32, 1) 0.4s, visibility 0s 1.1s; 
+  transition: transform 0s 0s, opacity 0.7s cubic-bezier(0.23, 1, 0.32, 1) 0.4s,
+    visibility 0s 1.1s;
   > div.modal-content {
     opacity: 0;
     transform: scale(1.2);
-    transition: transform 0s cubic-bezier(0.23, 1, 0.32, 1) 0.9s, opacity 0.7s cubic-bezier(0.23, 1, 0.32, 1) 0.2s;
+    transition: transform 0s cubic-bezier(0.23, 1, 0.32, 1) 0.9s,
+      opacity 0.7s cubic-bezier(0.23, 1, 0.32, 1) 0.2s;
   }
 }
 
 .modal-content {
-  
   max-height: 100vh;
   min-height: 50vh;
   min-width: 30vw;
@@ -77,7 +74,6 @@ export default {
   // @include no-scrollbar;
   // border-radius: 1em;
 }
-
 
 .modal-back-trigger {
   position: absolute;
@@ -93,17 +89,22 @@ export default {
 .modal-shown {
   visibility: visible;
   opacity: 1;
-  transition: transform 0s 0s, opacity 0.2s cubic-bezier(0.23, 1, 0.32, 1) 0.2s, visibility 0s;
+  transition: transform 0s 0s, opacity 0.2s cubic-bezier(0.23, 1, 0.32, 1) 0.2s,
+    visibility 0s;
   > div.modal-content {
     opacity: 1;
     transform: scale(1);
-    transition: transform 1s cubic-bezier(0.23, 1, 0.32, 1) 0.2s, opacity 0.7s cubic-bezier(0.23, 1, 0.32, 1) 0.4s;
+    transition: transform 1s cubic-bezier(0.23, 1, 0.32, 1) 0.2s,
+      opacity 0.7s cubic-bezier(0.23, 1, 0.32, 1) 0.4s;
   }
 }
 
 .modal-hidden {
 }
-.modal-enter, .modal-leave-to {}
-.modal-leave, .modal-enter-to {}
-
+.modal-enter,
+.modal-leave-to {
+}
+.modal-leave,
+.modal-enter-to {
+}
 </style>

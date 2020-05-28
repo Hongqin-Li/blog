@@ -23,6 +23,6 @@ body * {
   font-family: "Rubik", sans-serif;
 }
 .mark {
-  @include mark; 
+  @include mark;
 }
 </style>

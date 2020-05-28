@@ -1,13 +1,10 @@
 <template>
   <div>
-    <span
-      class="rating"
-      :class="{ 'rating-readonly': readonly }"
-    >
+    <span class="rating" :class="{ 'rating-readonly': readonly }">
       <div
         v-for="i in length"
         :key="i"
-        :class="{'rate-active': valueData >= i }"
+        :class="{ 'rate-active': valueData >= i }"
         @click="handleClick(i)"
       >
         <svg viewBox="-2 -2 30 30" xmlns="http://www.w3.org/2000/svg">
@@ -28,21 +25,21 @@ export default {
   props: {
     length: {
       type: Number,
-      default: 5,
+      default: 5
     },
     value: {
-      type: Number, 
-      default: 3,
+      type: Number,
+      default: 3
     },
     readonly: {
       type: Boolean,
-      default: false,
+      default: false
     }
   },
   data() {
     return {
-      valueData: 0,
-    }
+      valueData: 0
+    };
   },
   watch: {
     value: function(v) {
@@ -53,13 +50,13 @@ export default {
     handleClick(i) {
       this.valueData = i;
       this.$emit("input", i);
-    },
+    }
   }
 };
 </script>
 
 <style lang="scss" scoped>
-@import '@/scss/config.scss';
+@import "@/scss/config.scss";
 // Star -- Animation
 @keyframes wobble {
   0% {
@@ -115,5 +112,4 @@ export default {
   stroke-width: var(--border-width, 0.06em) !important;
   animation: wobble 0.8s ease-out;
 }
-
 </style>

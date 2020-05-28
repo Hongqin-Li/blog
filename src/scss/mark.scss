@@ -77,12 +77,14 @@ $mark-line-height: 1.4em;
     border: none;
     overflow: auto;
     background-color: rgba(0, 0, 0, 0.03);
+    font-size: 85%;
+    code { font-size: inherit; }
     &, > tbody, > tbody > tr { display: block; }
     tbody > tr {
       background-color: transparent;
-      pre { background: transparent; padding: 0; }
-      > td.linenos { padding: 1rem; color: rgba(0, 0, 0, $active-opacity);}
-      > td.code { padding: 1rem 1rem 1rem 0;}
+      pre { background: transparent; padding: 0; margin: 0; }
+      > td.linenos { padding: .8rem 1rem ; color: rgba(0, 0, 0, $active-opacity);}
+      > td.code { padding: .8rem 1rem .8rem 0;}
     }
   }
 }
@@ -154,7 +156,7 @@ $mark-line-height: 1.4em;
 
   pre {
     background-color: rgba(0, 0, 0, .03);
-    padding: 1rem;
+    padding: 0.8rem 1rem;
     overflow: auto;
     > code, > tt { padding: 0; background-color: transparent; }
   }
