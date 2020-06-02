@@ -31,6 +31,9 @@ import BackToTopButton from "@/components/BackToTopButton";
 
 import api from "@/obj/api";
 
+import katex from "katex";
+import "katex/dist/katex.min.css";
+
 export default {
   created() {
     this.refresh();
@@ -57,7 +60,14 @@ export default {
       api.get(this.$route.path).then(({ default: d }) => {
         this.title = d["title"];
         // this.time = d["time"];
-        this.html = d["html"];
+        let data = d["html"];
+        const regex = /<script type="math\/tex">(.*?)<\/script>/gs;
+        data = data.replace(regex, (match, capture) => {
+          const r = katex.renderToString(capture);
+          console.log(r);
+          return r;
+        });
+        this.html = data;
         this.tags = d["tags"].map(t => ({ name: t, to: `/tags/${t}` }));
       });
     }
@@ -70,6 +80,12 @@ export default {
   }
 };
 </script>
+
+<style lang="scss">
+.katex {
+  font-size: 1em;
+}
+</style>
 
 <style lang="scss" scoped>
 @import "@/scss/utils.scss";
