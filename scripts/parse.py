@@ -6,6 +6,8 @@ import markdown
 import json
 from datetime import datetime
 
+from mdx_math import MathExtension
+
 
 def read(path):
     with open(path, 'r') as f:
@@ -37,10 +39,11 @@ def parse1(path, parse_content=True):
                               'extra',
                               'codehilite',
                               'toc',
+                              MathExtension(enable_dollar_delimiter=True)
                             ], extension_configs={
                               'codehilite': {
                                 'linenums': True,
-                              }
+                              },
                             })
 
     assert t["tags"] is not None

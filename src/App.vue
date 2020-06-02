@@ -19,7 +19,7 @@ export default {
 @import url("https://fonts.googleapis.com/css?family=Material+Icons|Material+Icons+Outlined|Material+Icons+Two+Tone|Material+Icons+Round|Material+Icons+Sharp");
 
 @import "@/scss/mark";
-body * {
+body {
   font-family: "Rubik", sans-serif;
 }
 .mark {
