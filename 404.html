@@ -1,1 +1,41 @@
-<!DOCTYPE html><html lang=en><head><meta charset=utf-8><meta http-equiv=X-UA-Compatible content="IE=edge"><meta name=viewport content="width=device-width,initial-scale=1"><!--[if IE]><link rel="icon" href="/my-blog/favicon.ico"><![endif]--><title>my-blog</title><link href=/my-blog/js/chunk-2d0dd490.08b40d4b.js rel=prefetch><link href=/my-blog/js/chunk-2d22669c.96fa875e.js rel=prefetch><link href=/my-blog/js/chunk-2d22c1ad.139c7086.js rel=prefetch><link href=/my-blog/css/app.0b8b80e3.css rel=preload as=style><link href=/my-blog/css/chunk-vendors.003c74ea.css rel=preload as=style><link href=/my-blog/js/app.2aac5c75.js rel=preload as=script><link href=/my-blog/js/chunk-vendors.91c1e11d.js rel=preload as=script><link href=/my-blog/css/chunk-vendors.003c74ea.css rel=stylesheet><link href=/my-blog/css/app.0b8b80e3.css rel=stylesheet><link rel=icon type=image/png sizes=32x32 href=/my-blog/img/icons/favicon-32x32.png><link rel=icon type=image/png sizes=16x16 href=/my-blog/img/icons/favicon-16x16.png><link rel=manifest href=/my-blog/manifest.json><meta name=theme-color content=#4DBA87><meta name=apple-mobile-web-app-capable content=no><meta name=apple-mobile-web-app-status-bar-style content=default><meta name=apple-mobile-web-app-title content=my-blog><link rel=apple-touch-icon href=/my-blog/img/icons/apple-touch-icon-152x152.png><link rel=mask-icon href=/my-blog/img/icons/safari-pinned-tab.svg color=#4DBA87><meta name=msapplication-TileImage content=/my-blog/img/icons/msapplication-icon-144x144.png><meta name=msapplication-TileColor content=#000000></head><body><noscript><strong>We're sorry but my-blog doesn't work properly without JavaScript enabled. Please enable it to continue.</strong></noscript><div id=app></div><script src=/my-blog/js/chunk-vendors.91c1e11d.js></script><script src=/my-blog/js/app.2aac5c75.js></script></body></html>
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>Single Page Apps for GitHub Pages</title>
+    <script type="text/javascript">
+      // Single Page Apps for GitHub Pages
+      // https://github.com/rafrex/spa-github-pages
+      // Copyright (c) 2016 Rafael Pedicini, licensed under the MIT License
+      // ----------------------------------------------------------------------
+      // This script takes the current url and converts the path and query
+      // string into just a query string, and then redirects the browser
+      // to the new url with only a query string and hash fragment,
+      // e.g. http://www.foo.tld/one/two?a=b&c=d#qwe, becomes
+      // http://www.foo.tld/?p=/one/two&q=a=b~and~c=d#qwe
+      // Note: this 404.html file must be at least 512 bytes for it to work
+      // with Internet Explorer (it is currently > 512 bytes)
+
+      // If you're creating a Project Pages site and NOT using a custom domain,
+      // then set segmentCount to 1 (enterprise users may need to set it to > 1).
+      // This way the code will only replace the route part of the path, and not
+      // the real directory in which the app resides, for example:
+      // https://username.github.io/repo-name/one/two?a=b&c=d#qwe becomes
+      // https://username.github.io/repo-name/?p=/one/two&q=a=b~and~c=d#qwe
+      // Otherwise, leave segmentCount as 0.
+      var segmentCount = 0;
+
+      var l = window.location;
+      l.replace(
+        l.protocol + '//' + l.hostname + (l.port ? ':' + l.port : '') +
+        l.pathname.split('/').slice(0, 1 + segmentCount).join('/') + '/?p=/' +
+        l.pathname.slice(1).split('/').slice(segmentCount).join('/').replace(/&/g, '~and~') +
+        (l.search ? '&q=' + l.search.slice(1).replace(/&/g, '~and~') : '') +
+        l.hash
+      );
+
+    </script>
+  </head>
+  <body>
+  </body>
+</html>

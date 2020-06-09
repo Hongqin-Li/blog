@@ -1,6 +1,10 @@
 self.__precacheManifest = (self.__precacheManifest || []).concat([
   {
-    "revision": "efb1df61e6c52940aa40",
+    "revision": "12a3983c9a553685a6753b7ccfd7b63d",
+    "url": "/my-blog/404.html"
+  },
+  {
+    "revision": "e891f1b50e3af859f37b",
     "url": "/my-blog/css/app.0b8b80e3.css"
   },
   {
@@ -244,24 +248,24 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
     "url": "/my-blog/fonts/KaTeX_Typewriter-Regular.6cc31ea5.woff2"
   },
   {
-    "revision": "f272df08aac38205612413394623c200",
+    "revision": "3943d0173d7db3617017d4b78ee76801",
     "url": "/my-blog/index.html"
   },
   {
-    "revision": "efb1df61e6c52940aa40",
-    "url": "/my-blog/js/app.2aac5c75.js"
+    "revision": "e891f1b50e3af859f37b",
+    "url": "/my-blog/js/app.964e7750.js"
   },
   {
-    "revision": "48c20f340fd73fe0f1fb",
-    "url": "/my-blog/js/chunk-2d0dd490.08b40d4b.js"
+    "revision": "6a143dbafe31c45daeb7",
+    "url": "/my-blog/js/chunk-2d0dd490.125b2f44.js"
   },
   {
-    "revision": "cce16f91baf1b91f04bf",
-    "url": "/my-blog/js/chunk-2d22669c.96fa875e.js"
+    "revision": "2547ea037b60696f501f",
+    "url": "/my-blog/js/chunk-2d22669c.5ab8b004.js"
   },
   {
-    "revision": "5ef41db25aabf1e0f587",
-    "url": "/my-blog/js/chunk-2d22c1ad.139c7086.js"
+    "revision": "67d0894e604356ac7871",
+    "url": "/my-blog/js/chunk-2d22c1ad.8f659cbe.js"
   },
   {
     "revision": "b52023620cd69a0e3484",
