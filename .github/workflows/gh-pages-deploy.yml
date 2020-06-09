@@ -29,8 +29,6 @@ jobs:
     - name: Build documents and website
       run: make build
 
-    - run: cp dist/index.html dist/404.html
-
     - name: Deploy
       uses: peaceiris/actions-gh-pages@v3
       with:
