@@ -34,6 +34,8 @@ import api from "@/obj/api";
 import katex from "katex";
 import "katex/dist/katex.min.css";
 
+const assert = require("assert").strict;
+
 export default {
   created() {
     this.refresh();
@@ -61,10 +63,14 @@ export default {
         this.title = d["title"];
         // this.time = d["time"];
         let data = d["html"];
-        const regex = /<script type="math\/tex">(.*?)<\/script>/gs;
-        data = data.replace(regex, (match, capture) => {
-          const r = katex.renderToString(capture);
-          console.log(r);
+        const regex = /<script type="math\/tex([^"]*)">(.*?)<\/script>/gs;
+        data = data.replace(regex, (match, mode, tex) => {
+          if (mode) {
+            assert(mode === "; mode=display");
+          }
+          const r = katex.renderToString(tex, {
+            displayMode: mode === "; mode=display" ? true : false
+          });
           return r;
         });
         this.html = data;
