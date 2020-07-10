@@ -30,9 +30,8 @@ def parse1(path, parse_content=True):
 
     mtime = datetime.fromtimestamp(os.path.getmtime(path))
 
-    t["date"] = mtime.date
     t["title"] = title.strip()
-    t["last_modified"] = mtime
+    t["last_modified"] = mtime.date()
 
     if parse_content:
         t['html'] = markdown.markdown(md, extensions=[

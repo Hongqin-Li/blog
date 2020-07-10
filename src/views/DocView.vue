@@ -61,7 +61,7 @@ export default {
     refresh() {
       api.get(this.$route.path).then(({ default: d }) => {
         this.title = d["title"];
-        // this.time = d["time"];
+        this.time = `Last edited on ${d["last_modified"]}`;
         let data = d["html"];
         const regex = /<script type="math\/tex([^"]*)">(.*?)<\/script>/gs;
         data = data.replace(regex, (match, mode, tex) => {
