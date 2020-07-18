@@ -1,5 +1,5 @@
 +++
-tags = ["algorithm", "dynamic programming"]
+tags = ["dp"]
 +++
 
 # 动态规划笔记

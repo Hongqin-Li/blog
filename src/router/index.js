@@ -1,13 +1,27 @@
 import Vue from "vue";
 import VueRouter from "vue-router";
-import DocView from "../views/DocView.vue";
+import HomeView from "../views/HomeView.vue";
+import PostArticle from "../views/PostArticle.vue";
+import PostList from "../views/PostList.vue";
 
 Vue.use(VueRouter);
 
 const routes = [
   {
     path: "/docs/*",
-    component: DocView
+    component: PostArticle
+  },
+  {
+    path: "/tags/*",
+    component: PostList
+  },
+  {
+    path: "/categories/*",
+    component: PostList
+  },
+  {
+    path: "*",
+    component: HomeView
   }
 ];
 

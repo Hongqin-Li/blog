@@ -1,61 +1,40 @@
-import sys
-import json
-from parse import parse1
-from collections import defaultdict, Counter
+import os
+import glob
+import argparse
 
 if __name__ == "__main__":
 
-    paths = sys.stdin.read().split()
-    api = {}
-    categories = defaultdict(dict)
-    tags = Counter()
+    parser = argparse.ArgumentParser()
+    parser.add_argument("--api-dir", required=True)
+    parser.add_argument("--src-dir", required=True)
+    parser.add_argument("-o", "--output")
+    args = parser.parse_args()
 
-    def add_category_nav(path, meta):
-        assert path.startswith("docs/")
-        dirs = path[5:].split('/')
-        if len(dirs) == 1:
-            categories[meta["title"]] = "/" + path[:-3]
+    api_dir, src_dir = args.api_dir, args.src_dir
+    output_file = os.path.join(api_dir, "api.js")
+    if args.output:
+        output_file = args.output
 
-        elif len(dirs) == 2:
-            categories[dirs[0]][meta["title"]] = "/" + path[:-3]
+    urls = [os.path.relpath(p, api_dir)
+            for p in glob.glob(os.path.join(api_dir, "**", "*.json"),
+                               recursive=True)]
 
-        else:
-            categories[dirs[0]][dirs[1]] = f"/categories/{dirs[0]}/{dirs[1]}"
+    api = dict([(os.path.sep + os.path.splitext(url)[0], f"""\
+() => import('@/{os.path.join(os.path.relpath(api_dir, src_dir), url)}')""")
+                for url in urls])
 
-    # TODO tag list
-    # TODO category list
-
-    for path in paths:
-        assert path.startswith("docs/")
-        assert path.endswith(".md")
-
-        api['/' + path[:-3]] = f"() => import('@/obj/{path[:-3]}.json')"
-
-        meta = parse1(path, parse_content=False)
-
-        add_category_nav(path, meta)
-        tags.update(meta["tags"])
-
-    # TODO sort
-    category_nav = [
-        {"name": k, "to": v} if type(v) == str else
-        {"name": k, "children":
-            [{"name": name, "to": to} for name, to in v.items()]}
-        for k, v in categories.items()]
-
-    tag_nav = [
-        {"name": t, "cnt": cnt, "to": f"/tags/{t.lower()}"}
-        for t, cnt in tags.items()
-    ]
-
-    print('''
-const apis = {''' + ',\n'.join([f"'{k}': {v}" for k, v in api.items()]) + '}' + '''
-const navTags = ''' + json.dumps(tag_nav, ensure_ascii=False) + '''
-const navCategories = ''' + json.dumps(category_nav, ensure_ascii=False) + '''
+    with open(output_file, 'w') as f:
+        f.write('''\
+const apis = {\n  ''' + ',\n  '.join([f"'{k}': {v}" for k, v in api.items()]) + '\n}' + '''
 
 function get(url) {
-  if (apis[url]) return apis[url]();
-  else return Promise.reject(new Error('404'));
+  if (apis[url])
+    return new Promise((resolve, reject) => {
+      apis[url]()
+        .then(({default: d}) => resolve(d))
+        .catch(e => reject(e));
+    });
+  else return Promise.reject(new Error(`${url} not found.`));
 }
-export default { get, navTags, navCategories }
+export default { get }
 ''')

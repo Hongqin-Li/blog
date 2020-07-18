@@ -50,14 +50,18 @@
                 </template>
                 <template v-slot:box>
                   <div v-for="c in t.children" :key="c.to" class="list-subitem">
-                    <router-link :to="c.to">{{ c.name }}</router-link>
+                    <router-link class="base-link" :to="c.to">{{
+                      c.name
+                    }}</router-link>
                   </div>
                 </template>
               </collapse-item>
             </div>
           </div>
           <span v-for="r in routes" :key="r.name"
-            ><router-link :to="r.to">{{ r.name }}</router-link></span
+            ><router-link class="base-link" :to="r.to">{{
+              r.name
+            }}</router-link></span
           >
           <label class="search-span__trigger" @click="handleOpenSearch"
             ><i class="search-icon"></i
@@ -131,7 +135,9 @@
                     :key="c.to"
                     class="list-subitem--portrait"
                   >
-                    <router-link :to="c.to">{{ c.name }}</router-link>
+                    <router-link class="base-link" :to="c.to">{{
+                      c.name
+                    }}</router-link>
                   </div>
                 </template>
               </collapse-item>
@@ -142,7 +148,9 @@
         <nav class="nav-menu--light" style="width: 100%; border: none;">
           <ul>
             <li v-for="r in routes" :key="r.name">
-              <router-link :to="r.to">{{ r.name }}</router-link>
+              <router-link class="base-link" :to="r.to">{{
+                r.name
+              }}</router-link>
             </li>
           </ul>
         </nav>
@@ -163,8 +171,8 @@
     <footer>
       <base-footer>
         <template v-slot:intro>
-          Designed and Built by Mr. Foo<br />
-          Powered by <a>Light Minimalism</a>
+          Designed and Built by Hongqin Li<br />
+          Powered by Light Minimalism
         </template>
         <template v-slot:links>
           <a>F.A.Q</a>
@@ -172,7 +180,7 @@
           <a>Join Us</a>
         </template>
         <template v-slot:copyright>
-          Copyright © 2020 Today. All rights reserved.
+          Copyright © 2020 Hongqin Li. All rights reserved.
         </template>
       </base-footer>
     </footer>
@@ -1003,7 +1011,7 @@ $height: var(--dropdown-height, calc(var(--nslots) * var(--slot-height)));
 }
 
 // Fix a
-a {
+.base-link {
   color: inherit;
   text-decoration: none;
 }

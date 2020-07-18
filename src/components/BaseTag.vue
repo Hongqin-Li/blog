@@ -1,14 +1,15 @@
 <template>
   <div class="tag-container">
-    <div
+    <router-link
       v-for="t in items"
       :key="t.to"
+      :to="t.to"
       class="tag-item"
-      @click="$router.push(t.to)"
+      style="color: inherit;"
     >
       <div class="tag-name">{{ t.name }}</div>
       <div v-if="t.cnt" class="tag-cnt">{{ t.cnt }}</div>
-    </div>
+    </router-link>
   </div>
 </template>
 
