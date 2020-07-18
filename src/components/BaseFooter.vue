@@ -19,7 +19,7 @@
     <div class="footer-row">
       <div class="intro">
         <slot name="copyright">
-          Copyright © 2020 Today. All rights reserved.
+          Copyright © 2020 Hongqin Li. All rights reserved.
         </slot>
       </div>
     </div>
@@ -63,7 +63,8 @@ export default {
     display: flex;
     flex-direction: column;
     align-items: flex-end;
-    ::v-deep a {
+    > a {
+      color: inherit;
       cursor: pointer;
       opacity: $active-opacity;
       &:hover {

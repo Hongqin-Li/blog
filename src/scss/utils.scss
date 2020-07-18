@@ -147,11 +147,11 @@ $_precision: 10;
   } 
 }
 
-@mixin landscape() {
-  @media (min-width: $break-width) {
-    @content;
-  } 
-}
+// @mixin landscape() {
+  // @media (min-width: $break-width) {
+    // @content;
+  // } 
+// }
 
 @mixin skeleton-loader($name: loading, $white: false) {
   position: relative;

@@ -1,31 +1,33 @@
 BUILD_DIR ?= src/obj
-SRC_DIRS ?= docs
+SRC_DIR ?= docs
 
 SCRIPT_DIR ?= scripts
 API_GENERATOR ?= $(SCRIPT_DIR)/genapi.py
 MD_PARSER ?= $(SCRIPT_DIR)/parse.py
+EXTRA_PARSER ?= $(SCRIPT_DIR)/parse_extra.py
 
-SRCS := $(shell find $(SRC_DIRS) -name "*.md" -not -name "README.md")
+CONFIG := $(SRC_DIR)/config.toml
+SRCS := $(shell find $(SRC_DIR) -name "*.md" -not -name "README.md")
 OBJS := $(SRCS:%.md=$(BUILD_DIR)/%.json)
 
-$(BUILD_DIR)/api.js: $(OBJS) $(API_GENERATOR)
+.PHONY: install lint dev build clean all
+
+all: $(OBJS) $(API_GENERATOR) $(CONFIG)
 	@$(MKDIR_P) $(dir $@)
-	echo -n $(SRCS) | python $(API_GENERATOR) > $@
+	python $(EXTRA_PARSER) $(SRCS) --config $(CONFIG) --output $(BUILD_DIR)
+	python $(API_GENERATOR) --api-dir $(BUILD_DIR) --src-dir $(SRC_DIR) -o ${BUILD_DIR}/api.js
 
 $(BUILD_DIR)/%.json: %.md $(MD_PARSER)
 	@$(MKDIR_P) $(dir $@)
 	echo -n $< | python $(MD_PARSER) > $@
 
-.PHONY: install lint dev build clean
-
 install:
 	pip install -r scripts/requirements.txt
-	pip install flake8
+	pip install flake8 pytest
 	npm install
 
 lint:
 	flake8 $(SCRIPT_DIR)/*.py --count --show-source --statistics
-	flake8 $(SCRIPT_DIR)/*.py --count --exit-zero --max-complexity=10 --max-line-length=127 --statistics
 	npm run lint
 
 dev: $(BUILD_DIR)/api.js
@@ -36,7 +38,5 @@ build: $(BUILD_DIR)/api.js
 
 clean:
 	$(RM) -r $(BUILD_DIR)
-
--include $(DEPS)
 
 MKDIR_P ?= mkdir -p
