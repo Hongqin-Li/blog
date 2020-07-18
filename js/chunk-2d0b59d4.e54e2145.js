@@ -1,2 +1,0 @@
-(window["webpackJsonp"]=window["webpackJsonp"]||[]).push([["chunk-2d0b59d4"],{"1a3a":function(n){n.exports=JSON.parse('[{"name":2020,"cnt":3,"to":"/archives/2020"}]')}}]);
-//# sourceMappingURL=chunk-2d0b59d4.e54e2145.js.map

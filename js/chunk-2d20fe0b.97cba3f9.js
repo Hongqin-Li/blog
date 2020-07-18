@@ -1,0 +1,2 @@
+(window["webpackJsonp"]=window["webpackJsonp"]||[]).push([["chunk-2d20fe0b"],{b601:function(t){t.exports=JSON.parse('{"name":"Probablity","description":"","items":[{"tags":["notes","math","probability"],"title":"概率论笔记","excerpt":"$P(AB|C) = P(A|BC)P(B|C) = P(B|AC)P(A|C)$","updated_at":"2020-07-18T14:24:03.995233","url":"/docs/course/probability"}],"url":"/tags/probability"}')}}]);
+//# sourceMappingURL=chunk-2d20fe0b.97cba3f9.js.map

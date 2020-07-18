@@ -1,2 +1,0 @@
-(window["webpackJsonp"]=window["webpackJsonp"]||[]).push([["chunk-2d0cbede"],{"4c81":function(o){o.exports=JSON.parse('[{"name":"course","children":[{"name":"OOP Notes","to":"/docs/course/oop-notes"},{"name":"算法笔记","to":"/docs/course/alg-notes"},{"name":"动态规划笔记","to":"/docs/course/dp"}]}]')}}]);
-//# sourceMappingURL=chunk-2d0cbede.4a134220.js.map
