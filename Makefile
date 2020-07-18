@@ -30,10 +30,10 @@ lint:
 	flake8 $(SCRIPT_DIR)/*.py --count --show-source --statistics
 	npm run lint
 
-dev: $(BUILD_DIR)/api.js
+dev: all
 	npm run serve -- --port 8089
 
-build: $(BUILD_DIR)/api.js
+build: all
 	npm run build
 
 clean:
