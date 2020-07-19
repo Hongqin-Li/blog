@@ -67,8 +67,8 @@ export default {
 </script>
 
 <style lang="scss">
-.katex {
-  // font-size: 1.1em;
+.katex-display {
+  overflow-x: auto;
 }
 </style>
 
