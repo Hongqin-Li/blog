@@ -42,7 +42,7 @@ export default {
     refresh() {
       api.get(this.$route.path).then(d => {
         this.title = d["title"];
-        this.time = `Last edited on ${d["updated_at"]}`;
+        this.time = `Last edited on ${d["updated_at"].split("T")[0]}`;
         let data = d["html"];
         const regex = /<script type="math\/tex([^"]*)">(.*?)<\/script>/gs;
         data = data.replace(regex, (match, mode, tex) => {
