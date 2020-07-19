@@ -13,8 +13,8 @@ export default {
 };
 </script>
 
-// Customize font
 <style lang="scss">
+// Customize font
 @import url("https://fonts.googleapis.com/css?family=Rubik&display=swap");
 @import url("https://fonts.googleapis.com/css?family=Material+Icons|Material+Icons+Outlined|Material+Icons+Two+Tone|Material+Icons+Round|Material+Icons+Sharp");
 

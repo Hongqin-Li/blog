@@ -81,9 +81,6 @@ export default {
       margin-right: 0;
       max-width: 100vw;
     }
-    > nav {
-      border-top: 1px solid rgba(0, 0, 0, $divider-opacity);
-    }
   }
 }
 

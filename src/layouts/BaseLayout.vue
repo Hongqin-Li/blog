@@ -967,7 +967,7 @@ $height: var(--dropdown-height, calc(var(--nslots) * var(--slot-height)));
     top: 50%;
     width: 100%;
     height: 100%;
-    transform: translate(-50%, -50%);
+    transform: translate(-50%, 0%);
 
     &::before,
     &::after {

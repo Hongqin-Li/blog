@@ -25,9 +25,8 @@ export default {
     return {
       title: "LHQ's Blog",
       routes: [
-        { name: "日程", to: "/schedule" },
-        { name: "课程", to: "/explore" },
-        { name: "登入", to: "/login?go=-1" }
+        { name: "Home", to: "/home" },
+        { name: "Archives", to: "/archives" }
       ],
       searchResult: [],
       loading: false,
@@ -52,5 +51,3 @@ export default {
   }
 };
 </script>
-
-<style lang="scss" scoped></style>
