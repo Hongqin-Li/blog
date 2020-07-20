@@ -5,17 +5,25 @@ SCRIPT_DIR ?= scripts
 API_GENERATOR ?= $(SCRIPT_DIR)/genapi.py
 MD_PARSER ?= $(SCRIPT_DIR)/parse.py
 EXTRA_PARSER ?= $(SCRIPT_DIR)/parse_extra.py
+TOML_PARSER ?= $(SCRIPT_DIR)/toml2json.py
 
+DESC := $(SRC_DIR)/desc.toml
 CONFIG := $(SRC_DIR)/config.toml
 SRCS := $(shell find $(SRC_DIR) -name "*.md" -not -name "README.md")
+
 OBJS := $(SRCS:%.md=$(BUILD_DIR)/%.json)
+CONFIG_OBJ := $(BUILD_DIR)/config.json
 
-.PHONY: install lint dev build clean all
+.PHONY: install lint dev build clean all chmod
 
-all: $(OBJS) $(API_GENERATOR) $(CONFIG)
+all: $(OBJS) $(API_GENERATOR) $(DESC) $(CONFIG_OBJ)
 	@$(MKDIR_P) $(dir $@)
-	python $(EXTRA_PARSER) $(SRCS) --config $(CONFIG) --output $(BUILD_DIR)
+	python $(EXTRA_PARSER) $(SRCS) --config $(DESC) --output $(BUILD_DIR)
 	python $(API_GENERATOR) --api-dir $(BUILD_DIR) --src-dir $(SRC_DIR) -o ${BUILD_DIR}/api.js
+
+$(CONFIG_OBJ): $(CONFIG) $(TOML_PARSER)
+	@$(MKDIR_P) $(dir $@)
+	cat $< | python $(TOML_PARSER) > $@
 
 $(BUILD_DIR)/%.json: %.md $(MD_PARSER)
 	@$(MKDIR_P) $(dir $@)
@@ -36,6 +44,9 @@ dev: all
 build: all
 	npm run build
 
+chmod:
+	chmod 644 $(SRCS)
+	
 clean:
 	$(RM) -r $(BUILD_DIR)
 
