@@ -11,5 +11,5 @@ module.exports = {
       )
     ]
   },
-  publicPath: process.env.NODE_ENV === "production" ? "/my-blog/" : "/"
+  publicPath: process.env.NODE_ENV === "production" ? "/blog/" : "/"
 };
