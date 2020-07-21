@@ -34,4 +34,6 @@ jobs:
       run: make lint
 
     - name: Build documents and website
+      env:
+        GA_API_BASE64: ${{ secrets.GA_API_BASE64 }}
       run: make build

@@ -15,7 +15,7 @@
 
     <!-- Landscape Top Bar -->
     <header class="header--landscape">
-      <div style="height: 3rem; align-items: center;">
+      <div class="header-row" style="height: 3rem; align-items: center;">
         <span>{{ title }}</span>
 
         <span
@@ -80,9 +80,10 @@
     <header
       class="header--portrait"
       :class="{ 'topbar--hidden': !showTopbar && !openDropdown }"
+      style="color: rgba(0, 0, 0, .8);"
     >
       <!-- header row 1 -->
-      <div style="height: 3em; align-items: center;">
+      <div class="header-row" style="height: 3em; align-items: center;">
         <span>{{ title }}</span>
         <label class="switch--arrow right-start">
           <input type="checkbox" v-model="openDropdown" /><span></span>
@@ -91,7 +92,14 @@
 
       <!-- header row 2(dropdown box) -->
       <div
-        style="height: calc(100vh - 3rem); display: flex; flex-direction: column; align-items: center;overflow-y: auto; padding-top: 0;"
+        style="
+          height: calc(100vh - 3rem);
+          display: flex;
+          flex-direction: column;
+          align-items: center;
+          overflow-y: auto;
+          padding: 0 1rem 0 1rem;
+        "
       >
         <span
           class="search-span--portrait"
@@ -99,8 +107,8 @@
           style="
             font-size: 1rem;
             margin-right: 0;
-            --slot-height: 2.5em;
-            --dropdown-height: calc(100vh - 5.5rem);
+            --slot-height: 2.3em;
+            --dropdown-height: calc(100vh - 5.3rem);
           "
           :class="{ 'search-span--portrait-active': openSearchPortrait }"
           v-click-outside="{
@@ -145,15 +153,15 @@
           </div>
         </span>
 
-        <nav class="nav-menu--light" style="width: 100%; border: none;">
-          <ul>
-            <li v-for="r in routes" :key="r.name">
-              <router-link class="base-link" :to="r.to">{{
-                r.name
-              }}</router-link>
-            </li>
-          </ul>
-        </nav>
+        <base-nav
+          :items="navRoutes"
+          style="width: calc(100% - 1em); margin-top: 0.7rem; "
+        />
+        <hr class="header-nav-hr" />
+        <base-nav
+          :items="routes"
+          style="width: calc(100% - 1em); margin-bottom: 2rem; "
+        />
       </div>
     </header>
 
@@ -191,6 +199,7 @@
 // import {debounce} from "@/utils";
 import throttle from "lodash/throttle";
 // import axios from "axios";
+import BaseNav from "@/components/BaseNav";
 import BaseFooter from "@/components/BaseFooter";
 import MaterialLoader from "@/components/MaterialLoader";
 import CollapseItem from "@/components/CollapseItem";
@@ -209,7 +218,11 @@ export default {
     },
     title: {
       type: String,
-      default: "TODAY"
+      default: ""
+    },
+    navRoutes: {
+      type: Array,
+      default: () => []
     },
     routes: {
       type: Array,
@@ -232,6 +245,10 @@ export default {
     value: {
       type: String,
       default: ""
+    },
+    autohide: {
+      type: Boolean,
+      default: false
     }
   },
   created: function() {
@@ -256,11 +273,13 @@ export default {
   methods: {
     // Hide topbar automatically
     onScroll() {
-      const thispos = window.pageYOffset;
-      if (this.lastScrollPosition < thispos && thispos > 3 * 17)
-        this.showTopbar = false;
-      else this.showTopbar = true;
-      this.lastScrollPosition = thispos;
+      if (!this.openDropdown && this.autohide) {
+        const thispos = window.pageYOffset;
+        if (this.lastScrollPosition < thispos && thispos > 3 * 17)
+          this.showTopbar = false;
+        else this.showTopbar = true;
+        this.lastScrollPosition = thispos;
+      }
     },
     handleOpenSearch() {
       this.openSearch = true;
@@ -288,6 +307,7 @@ export default {
   },
   components: {
     MaterialLoader,
+    BaseNav,
     BaseFooter,
     CollapseItem
   }
@@ -329,12 +349,15 @@ export default {
   width: 100%;
   transform: translateY(0);
 
+  @include frosted-glass;
+
   &,
   & > div {
     overflow: hidden;
   }
 }
 .header--landscape {
+  background-color: white;
   z-index: 10;
   @include portrait() {
     display: none;
@@ -468,7 +491,7 @@ nav.nav-menu--light {
   }
 }
 
-%hmf--dense-bar {
+@mixin hmf--dense-bar {
   // display: block;
 
   //dense
@@ -478,7 +501,7 @@ nav.nav-menu--light {
   }
 
   //dense appbar
-  > div {
+  > div.header-row {
     position: relative;
     width: 100%;
 
@@ -553,14 +576,12 @@ nav.nav-menu--light {
   }
 
   > header {
-    background-color: white;
-
     border: 1px solid rgba(0, 0, 0, $divider-opacity);
     border-top: none;
     border-left: none;
     border-right: none;
 
-    @extend %hmf--dense-bar;
+    @include hmf--dense-bar;
   }
 
   //Dense header and footer
@@ -583,7 +604,7 @@ nav.nav-menu--light {
   & + * {
     height: 3rem;
     transition: height 0.5s cubic-bezier(0.28, 0.11, 0.32, 1) 0.4s,
-      transform 0.3s; // Support auto hide
+      transform 0.3s, background-color 0.5s 0.4s; // Support auto hide
     //nav
     & > *:nth-child(2) > * {
       transform: translateY(-6 * 3rem);
@@ -593,6 +614,12 @@ nav.nav-menu--light {
     }
   }
   &:checked + * {
+    @supports (
+      (-webkit-backdrop-filter: saturate(180%) blur(20px)) or
+        (backdrop-filter: saturate(180%) blur(20px))
+    ) {
+      background-color: rgba(255, 255, 255, 0.9) !important;
+    }
     height: 100vh;
     transition-delay: 0.2s;
 
@@ -967,7 +994,7 @@ $height: var(--dropdown-height, calc(var(--nslots) * var(--slot-height)));
     top: 50%;
     width: 100%;
     height: 100%;
-    transform: translate(-50%, -50%);
+    transform: translate(-50%, 0%);
 
     &::before,
     &::after {
@@ -1008,6 +1035,12 @@ $height: var(--dropdown-height, calc(var(--nslots) * var(--slot-height)));
       transform: rotate(40deg);
     }
   }
+}
+
+.header-nav-hr {
+  width: calc(100% - 4em);
+  border-color: rgba(0, 0, 0, $divider-opacity);
+  border-bottom: none;
 }
 
 // Fix a

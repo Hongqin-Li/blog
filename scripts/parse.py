@@ -4,7 +4,7 @@ import re
 import toml
 import markdown
 import json
-from datetime import datetime
+import subprocess
 
 from mdx_math import MathExtension
 
@@ -12,6 +12,26 @@ from mdx_math import MathExtension
 def read(path):
     with open(path, 'r') as f:
         return f.read()
+
+
+def get_ctime(path):
+    p = subprocess.Popen(["git", "log", "--diff-filter=A", "--follow",
+                          "--format=%aI", "--max-count=1",
+                          f"{path}"], stdout=subprocess.PIPE)
+    out = p.communicate()[0].decode("utf-8").strip()
+    assert out, f"Cannot find git added logs: {path}"
+    assert type(out) == str
+    return out
+
+
+def get_mtime(path):
+    p = subprocess.Popen(["git", "log", "--diff-filter=AM", "--follow",
+                          "--format=%aI", "--max-count=1",
+                          f"{path}"], stdout=subprocess.PIPE)
+    out = p.communicate()[0].decode("utf-8").strip()
+    assert out, f"Cannot find git modified logs: {path}"
+    assert type(out) == str
+    return out
 
 
 def parse_header(s):
@@ -44,13 +64,12 @@ def parse1(path, parse_content=True):
 
     t = toml.loads(t)
 
-    mtime = datetime.fromtimestamp(os.path.getmtime(path))
-
     assert len(t.keys()) == 1, f"Too more headers in {path}: {t}"
 
     t["title"] = title.strip()
     t["excerpt"] = excerpt.strip()
-    t["updated_at"] = mtime.isoformat()
+    t["updated_at"] = get_mtime(path)
+    t["created_at"] = get_ctime(path)
     t["url"] = os.path.splitext(os.sep + path)[0]
 
     if parse_content:

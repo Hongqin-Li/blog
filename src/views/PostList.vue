@@ -92,10 +92,10 @@ export default {
   }
 
   @include portrait {
+    margin-top: 0.5rem;
     &:hover {
       transform: none;
     }
-    margin-top: 0.7rem;
   }
   > .post-list-item__title {
     cursor: pointer;
@@ -114,7 +114,7 @@ export default {
     }
     &:hover > i {
       transform: translateX(0.2em);
-      opacity: $inactive-opacity;
+      opacity: $active-opacity;
       transition: opacity 0.1s 0.1s, transform 0.3s;
     }
   }
@@ -125,9 +125,11 @@ export default {
     align-items: flex-end;
     flex-wrap: wrap;
     > span {
+      font-size: 0.8em;
+      color: rgba(black, $inactive-opacity);
       margin-left: auto;
-      margin-top: 1em;
-      padding-left: 1em;
+      margin-top: 1rem;
+      padding-left: 1rem;
     }
   }
 }

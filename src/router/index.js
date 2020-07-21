@@ -12,11 +12,8 @@ const routes = [
     component: PostArticle
   },
   {
-    path: "/tags/*",
-    component: PostList
-  },
-  {
-    path: "/categories/*",
+    path: "/dev/postlist",
+    alias: ["/tags/*", "/categories/*"],
     component: PostList
   },
   {
