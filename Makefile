@@ -8,7 +8,6 @@ EXTRA_PARSER ?= $(SCRIPT_DIR)/parse_extra.py
 TOML_PARSER ?= $(SCRIPT_DIR)/toml2json.py
 GA_PARSER ?= $(SCRIPT_DIR)/ga.py
 
-GA_KEY := ./ga.json
 DESC := $(SRC_DIR)/desc.toml
 CONFIG := $(SRC_DIR)/config.toml
 SRCS := $(shell find $(SRC_DIR) -name "*.md" -not -name "README.md")
@@ -19,7 +18,7 @@ GA_OBJ := $(BUILD_DIR)/ga.json
 
 .PHONY: install lint dev build clean all chmod
 
-all: $(OBJS) $(API_GENERATOR) $(DESC) $(CONFIG_OBJ) $(CONFIG) $(GA_PARSER) $(GA_KEY)
+all: $(OBJS) $(API_GENERATOR) $(DESC) $(CONFIG_OBJ) $(CONFIG) $(GA_PARSER)
 	python $(EXTRA_PARSER) $(SRCS) --config $(DESC) --output $(BUILD_DIR)
 	python $(API_GENERATOR) --api-dir $(BUILD_DIR) --src-dir $(SRC_DIR) -o ${BUILD_DIR}/api.js
 	python $(GA_PARSER) --config $(CONFIG) -o $(GA_OBJ)
