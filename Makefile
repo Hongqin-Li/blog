@@ -22,7 +22,7 @@ GA_OBJ := $(BUILD_DIR)/ga.json
 all: $(OBJS) $(API_GENERATOR) $(DESC) $(CONFIG_OBJ) $(CONFIG) $(GA_PARSER) $(GA_KEY)
 	python $(EXTRA_PARSER) $(SRCS) --config $(DESC) --output $(BUILD_DIR)
 	python $(API_GENERATOR) --api-dir $(BUILD_DIR) --src-dir $(SRC_DIR) -o ${BUILD_DIR}/api.js
-	python $(GA_PARSER) --key-file $(GA_KEY) --config $(CONFIG) -o $(GA_OBJ)
+	python $(GA_PARSER) --config $(CONFIG) -o $(GA_OBJ)
 
 $(CONFIG_OBJ): $(CONFIG) $(TOML_PARSER)
 	@$(MKDIR_P) $(dir $@)
