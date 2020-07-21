@@ -19,18 +19,14 @@ GA_OBJ := $(BUILD_DIR)/ga.json
 
 .PHONY: install lint dev build clean all chmod
 
-all: $(OBJS) $(API_GENERATOR) $(DESC) $(CONFIG_OBJ) $(GA_OBJ)
-	@$(MKDIR_P) $(dir $@)
+all: $(OBJS) $(API_GENERATOR) $(DESC) $(CONFIG_OBJ) $(CONFIG) $(GA_PARSER) $(GA_KEY)
 	python $(EXTRA_PARSER) $(SRCS) --config $(DESC) --output $(BUILD_DIR)
 	python $(API_GENERATOR) --api-dir $(BUILD_DIR) --src-dir $(SRC_DIR) -o ${BUILD_DIR}/api.js
+	python $(GA_PARSER) --key-file $(GA_KEY) --config $(CONFIG) -o $(GA_OBJ)
 
 $(CONFIG_OBJ): $(CONFIG) $(TOML_PARSER)
 	@$(MKDIR_P) $(dir $@)
 	cat $< | python $(TOML_PARSER) > $@
-
-$(GA_OBJ): $(CONFIG) $(GA_KEY) $(GA_PARSER)
-	@$(MKDIR_P) $(dir $@)
-	python $(GA_PARSER) --key-file $(GA_KEY) --config $(CONFIG) -o $@
 
 $(BUILD_DIR)/%.json: %.md $(MD_PARSER)
 	@$(MKDIR_P) $(dir $@)

@@ -13,7 +13,7 @@ Vue.config.productionTip = false;
 Vue.use(
   VueGtag,
   {
-    enable: process.env.NODE_ENV === "production", 
+    enabled: process.env.NODE_ENV === "production",
     config: { id: cfg["google-analytics"]["id"] }
   },
   router
