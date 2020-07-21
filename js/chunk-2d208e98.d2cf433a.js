@@ -1,0 +1,2 @@
+(window["webpackJsonp"]=window["webpackJsonp"]||[]).push([["chunk-2d208e98"],{a78d:function(e){e.exports=JSON.parse('{"name":"Computer Networking","description":"","items":[{"tags":["notes","computer-network"],"title":"计算机网络笔记","excerpt":"TCP三次握手、四次挥手","updated_at":"2020-07-21T23:15:53+08:00","created_at":"2020-07-21T23:15:53+08:00","url":"/docs/course/computer-network"}],"url":"/tags/computer-network"}')}}]);
+//# sourceMappingURL=chunk-2d208e98.d2cf433a.js.map

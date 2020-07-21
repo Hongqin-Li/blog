@@ -1,0 +1,2 @@
+(window["webpackJsonp"]=window["webpackJsonp"]||[]).push([["chunk-2d0d67f2"],{7399:function(e){e.exports=JSON.parse('{"name":"Trick","description":"","items":[{"tags":["bfs","trick"],"title":"HDU-3567 Eight II","excerpt":"Eight-puzzle, which is also called \\"Nine grids\\", comes from an old game.","updated_at":"2020-07-21T23:15:53+08:00","created_at":"2020-07-21T23:15:53+08:00","url":"/docs/acm/search/hdu-3567"}],"url":"/tags/trick"}')}}]);
+//# sourceMappingURL=chunk-2d0d67f2.8f38470d.js.map
