@@ -122,13 +122,13 @@ $_precision: 10;
 }
 
 @mixin frosted-glass($color: #ffffff) {
+    background-color: rgba($color, 1);
     @supports ((-webkit-backdrop-filter: saturate(180%) blur(20px)) or (backdrop-filter: saturate(180%) blur(20px))) {
         //user can customize background color like this
-        background-color: rgba($color, .8) !important;
+        background-color: rgba($color, .8);
         backdrop-filter: blur(10px);
-        -webkit-backdrop-filter: saturate(180%) blur(10px);
+        -webkit-backdrop-filter: saturate(180%) blur(20px);
     }
-    background-color: rgba($color, 1);
 }
 
 @mixin button2span {

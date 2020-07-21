@@ -99,7 +99,7 @@ if __name__ == "__main__":
 
     def dump1(path, data):
         path = os.path.join(output_dir, path)
-        data = json.dumps(data, ensure_ascii=False)
+        data = json.dumps(data, ensure_ascii=False, indent=2)
         writef(path, data)
 
     dump1("tags.json", tag_nav)
