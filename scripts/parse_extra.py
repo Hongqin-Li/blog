@@ -132,16 +132,19 @@ if __name__ == "__main__":
     dump1("archives.json", archive_nav)
 
     for t, items in tag_list.items():
+        items.sort(key=lambda i: i["updated_at"], reverse=True)
         title, desc = cfg[t]["title"], cfg[t]["description"]
         dump1(f"tags/{t}.json", {"name": title, "description": desc,
                                  "items": items, "url": f"/tags/{t}"})
 
     for t, items in category_list.items():
+        items.sort(key=lambda i: i["updated_at"], reverse=True)
         title, desc = cfg[t]["title"], cfg[t]["description"]
         dump1(f"categories/{t}.json",
               {"name": title, "description": desc,
                "items": items, "url": f"/categories/{t}"})
 
     for t, items in archive_list.items():
+        items.sort(key=lambda i: i["created_at"], reverse=True)
         dump1(f"archives/{t}.json", {"name": t, "items": items,
                                      "url": f"/archives/{t}"})
