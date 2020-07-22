@@ -79,7 +79,7 @@ export default {
 
 <style lang="scss">
 .katex-display {
-  overflow-x: auto;
+  overflow: auto hidden;
 }
 </style>
 
