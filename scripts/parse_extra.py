@@ -2,6 +2,7 @@ import os
 import json
 import argparse
 import toml
+from functools import cmp_to_key
 from datetime import datetime
 from parse import parse1
 from collections import defaultdict
@@ -80,11 +81,11 @@ if __name__ == "__main__":
             check_config(cfg, t, path)
             tag_list[t].append(meta)
 
-    # TODO sort
     category_nav = [
         {"name": k, "to": v} if type(v) == str else
         {"name": k, "children":
-            [{"name": name, "to": to} for name, to in v.items()]}
+         sorted([{"name": name, "to": to} for name, to in v.items()],
+                key=lambda i: i["name"])}
         for k, v in categories.items()]
 
     tag_nav = [
@@ -97,6 +98,30 @@ if __name__ == "__main__":
         for t, items in archive_list.items()
     ]
 
+    def cate_cmp(lhs, rhs):
+        if "children" in lhs and "children" not in rhs:
+            return -1
+        elif "children" in rhs and "children" not in lhs:
+            return 1
+        elif "children" in lhs and "children" in rhs:
+            if lhs["name"] < rhs["name"]:
+                return -1
+            elif lhs["name"] == rhs["name"]:
+                return 0
+            else:
+                return 0
+        else:
+            if lhs["name"] < rhs["name"]:
+                return -1
+            elif lhs["name"] == rhs["name"]:
+                return 0
+            else:
+                return 1
+
+    category_nav.sort(key=cmp_to_key(cate_cmp))
+    tag_nav.sort(key=lambda i: i["cnt"], reverse=True)
+    archive_nav.sort(key=lambda i: i["name"])
+
     def dump1(path, data):
         path = os.path.join(output_dir, path)
         data = json.dumps(data, ensure_ascii=False, indent=2)
@@ -107,16 +132,19 @@ if __name__ == "__main__":
     dump1("archives.json", archive_nav)
 
     for t, items in tag_list.items():
+        items.sort(key=lambda i: i["updated_at"], reverse=True)
         title, desc = cfg[t]["title"], cfg[t]["description"]
         dump1(f"tags/{t}.json", {"name": title, "description": desc,
                                  "items": items, "url": f"/tags/{t}"})
 
     for t, items in category_list.items():
+        items.sort(key=lambda i: i["updated_at"], reverse=True)
         title, desc = cfg[t]["title"], cfg[t]["description"]
         dump1(f"categories/{t}.json",
               {"name": title, "description": desc,
                "items": items, "url": f"/categories/{t}"})
 
     for t, items in archive_list.items():
+        items.sort(key=lambda i: i["created_at"], reverse=True)
         dump1(f"archives/{t}.json", {"name": t, "items": items,
                                      "url": f"/archives/{t}"})
