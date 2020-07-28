@@ -43,6 +43,8 @@ tags = ["data-structure", "tricks"]
 
 我一开始的想法是 C = $r_i \in [L, R]$ 的区间个数 + $r_i > R \text{ and } l_i \le R$ 的区间个数，用两棵线段树维护即可，而标程的思路是 C = 左端点小于等于R的区间个数 - 右端点小于L的区间个数，用两个树状数组维护即可。
 
+树状数组的做法
+
 ```c++
 #include <cstdio>
 
@@ -75,6 +77,8 @@ int main() {
   return 0;
 }
 ```
+
+线段树的做法
 
 ```c++
 #include <cstdio>
