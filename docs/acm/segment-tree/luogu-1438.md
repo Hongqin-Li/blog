@@ -21,6 +21,8 @@ tags = ["data-structure"]
 
 若 $opt=2$ 则再输入一个整数 $p$。
 
+$0\le n,m\le 105,−200\le ai,K,D\le 200,1\le l\le r\le n,1\le p\le n$
+
 ## Output
 
 对于每个询问，一行一个整数表示答案。
