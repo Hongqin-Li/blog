@@ -14,14 +14,14 @@ def writef(path, s):
         f.write(s)
 
 
-def check_config(config, t, path):
+def check_config(cfg, t, path):
     required_fields = ["title", "description"]
     assert t in cfg, \
         f"Field '{t}' not found in {config_path}: " \
         f"Required by {path}."
     for field in required_fields:
         assert field in cfg[t], \
-               f"Field {field} of '{t}' not found in {config_path}: " \
+               f"Field '{field}' of '{t}' not found in {config_path}: " \
                f"Required by {path}"
 
 

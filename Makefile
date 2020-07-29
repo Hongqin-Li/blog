@@ -29,7 +29,7 @@ $(CONFIG_OBJ): $(CONFIG) $(TOML_PARSER)
 
 $(BUILD_DIR)/%.json: %.md $(MD_PARSER)
 	@$(MKDIR_P) $(dir $@)
-	echo -n $< | python $(MD_PARSER) > $@
+	python $(MD_PARSER) $< -o $@
 
 install:
 	pip install -r scripts/requirements.txt
