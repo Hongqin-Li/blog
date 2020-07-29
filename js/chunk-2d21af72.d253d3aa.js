@@ -1,2 +1,0 @@
-(window["webpackJsonp"]=window["webpackJsonp"]||[]).push([["chunk-2d21af72"],{be81:function(e){e.exports=JSON.parse('{"name":"Maching Learning","description":"","items":[{"tags":["notes","machine-learning"],"title":"模式识别笔记","excerpt":"KL散度/相对熵：$KL(p||q) = - \\\\int p(x) \\\\ln \\\\left\\\\{ \\\\frac{q(x)}{p(x)} \\\\right\\\\}$，其中p(x)是X的概率密度函数（未知），q(x)是对于X的近似概率密度函数","updated_at":"2020-07-22T12:51:20+08:00","created_at":"2020-07-22T12:51:20+08:00","url":"/docs/course/prml"}],"url":"/tags/machine-learning"}')}}]);
-//# sourceMappingURL=chunk-2d21af72.d253d3aa.js.map

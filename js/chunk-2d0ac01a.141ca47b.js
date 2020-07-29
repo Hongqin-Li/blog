@@ -1,0 +1,2 @@
+(window["webpackJsonp"]=window["webpackJsonp"]||[]).push([["chunk-2d0ac01a"],{1863:function(e){e.exports=JSON.parse('{"name":"Operating System","description":"","items":[{"tags":["operating-system","notes"],"title":"操作系统笔记","excerpt":"- Distributed System（分布式系统）","updated_at":"2020-07-29T16:27:47+08:00","created_at":"2020-07-29T16:27:47+08:00","url":"/docs/course/os"}],"url":"/tags/operating-system"}')}}]);
+//# sourceMappingURL=chunk-2d0ac01a.141ca47b.js.map
