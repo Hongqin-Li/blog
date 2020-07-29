@@ -18,7 +18,9 @@ tags = ["data-structure"]
 
 接下来一行一个整数 $m$。
 
-接下来 $m$ 行，每行表示一个操作，操作 $1$ 表示为 1 l r v，操作 $2$ 表示为 2 l r。
+接下来 $m$ 行，每行表示一个操作，操作 $1$ 表示为 `1 l r v`，操作 $2$ 表示为 `2 l r`。
+
+保证 $1\leq n,m,a_i,v\leq 2\times 10^5$，$1\leq l\leq r\leq n$。保证所有输入的数都是正整数。
 
 ## Output
 
@@ -54,7 +56,7 @@ tags = ["data-structure"]
 
 $$
 \begin{aligned}
-\sum\sin(a_i + v) &= \sum \sin(a_i)\cos v + \sum \cos(a_i)\sin v
+\sum\sin(a_i + v) &= \sum \sin(a_i)\cos v + \sum \cos(a_i)\sin v \\
 \sum\cos(a_i + v) &= \sum \cos(a_i)\cos v - \sum \sin(a_i)\sin v
 \end{aligned}
 $$
