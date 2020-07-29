@@ -1,10 +1,10 @@
-import sys
 import os
 import re
 import toml
 import markdown
 import json
 import subprocess
+import argparse
 
 from mdx_math import MathExtension
 
@@ -90,6 +90,15 @@ def parse1(path, parse_content=True):
 
 
 if __name__ == "__main__":
-    print(json.dumps(parse1(sys.stdin.read()),
+
+    parser = argparse.ArgumentParser()
+    parser.add_argument("path", help="path to a markdown article")
+    parser.add_argument("-o", "--output", required=True,
+                        help="output file")
+    args = parser.parse_args()
+
+    out = json.dumps(parse1(args.path),
                      ensure_ascii=False,
-                     indent=4, sort_keys=True, default=str))
+                     indent=2, sort_keys=True, default=str)
+    with open(args.output, 'w') as f:
+        f.write(out)

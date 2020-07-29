@@ -83,7 +83,11 @@ $mark-line-height: 1.4em;
     tbody > tr {
       background-color: transparent;
       pre { background: transparent; padding: 0; margin: 0; }
-      > td.linenos { padding: .8rem 1rem ; color: rgba(0, 0, 0, $active-opacity);}
+      > td.linenos {
+        @include no-select;
+        padding: .8rem 1rem;
+        color: rgba(0, 0, 0, $active-opacity);
+      }
       > td.code { padding: .8rem 1rem .8rem 0;}
     }
   }
