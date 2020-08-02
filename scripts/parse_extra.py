@@ -4,8 +4,8 @@ import argparse
 import toml
 from functools import cmp_to_key
 from datetime import datetime
-from parse import parse1
 from collections import defaultdict
+from parse import parse1, name2url
 
 
 def writef(path, s):
@@ -70,7 +70,7 @@ if __name__ == "__main__":
 
         c = add_category_nav(path, meta)
 
-        year = datetime.fromisoformat(meta["updated_at"]).year
+        year = datetime.fromisoformat(meta["created_at"]).year
         archive_list[year].append(meta)
 
         if c:
@@ -78,8 +78,8 @@ if __name__ == "__main__":
             category_list[c].append(meta)
 
         for t in meta["tags"]:
-            check_config(cfg, t, path)
-            tag_list[t].append(meta)
+            check_config(cfg, t["name"], path)
+            tag_list[t["name"]].append(meta)
 
     category_nav = [
         {"name": k, "to": v} if type(v) == str else
@@ -89,7 +89,7 @@ if __name__ == "__main__":
         for k, v in categories.items()]
 
     tag_nav = [
-        {"name": t, "cnt": len(items), "to": f"/tags/{t}"}
+        {"name": t, "cnt": len(items), "to": name2url(t, prefix="/tags/")}
         for t, items in tag_list.items()
     ]
 
@@ -132,13 +132,14 @@ if __name__ == "__main__":
     dump1("archives.json", archive_nav)
 
     for t, items in tag_list.items():
-        items.sort(key=lambda i: i["updated_at"], reverse=True)
+        items.sort(key=lambda i: i["created_at"], reverse=True)
         title, desc = cfg[t]["title"], cfg[t]["description"]
-        dump1(f"tags/{t}.json", {"name": title, "description": desc,
-                                 "items": items, "url": f"/tags/{t}"})
+        uname = name2url(t)
+        dump1(f"tags/{uname}.json", {"name": title, "description": desc,
+                                     "items": items, "url": f"/tags/{uname}"})
 
     for t, items in category_list.items():
-        items.sort(key=lambda i: i["updated_at"], reverse=True)
+        items.sort(key=lambda i: i["created_at"], reverse=True)
         title, desc = cfg[t]["title"], cfg[t]["description"]
         dump1(f"categories/{t}.json",
               {"name": title, "description": desc,

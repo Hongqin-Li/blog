@@ -9,10 +9,10 @@ description = "Dynamic programming, like the divide-and-conquer method, solves p
 title = "Greedy Algorithm"
 description = "A greedy algorithm always makes the choice that looks best at the moment. That is, it makes a locally optimal choice in the hope that this choice will lead to a globally optimal solution."
 
-[data-structure]
-title = "Date Structure"
+["data structures"]
+title = "Date Structures"
 description = "A data structure is a way to store and organize data in order to facilitate access and modifications. No single data structure works well for all purposes, and so it is important to know the strengths and limitations of several of them. Basic data structures include stack, queue, heap, hash table, binary search tree. More complicate ones include binary indexed tree, sparse table, disjoint set, persistent data structures."
-[segment-tree]
+["segment-tree"]
 title = "Segment Tree"
 description = "A Segment Tree is a data structure that allows answering range queries over an array effectively, while still being flexible enough to allow modifying the array."
 

@@ -1,5 +1,5 @@
 +++
-tags = ["data-structure"]
+tags = ["data structures"]
 +++
 
 # 线段树

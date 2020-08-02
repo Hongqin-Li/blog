@@ -1,5 +1,5 @@
 +++
-tags = ["data-structure"]
+tags = ["data structures"]
 +++
 
 # 洛谷-P6492 [COCI2010-2011#6] STEP

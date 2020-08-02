@@ -1,6 +1,9 @@
 import Vue from "vue";
 import VueRouter from "vue-router";
+
 import HomeView from "../views/HomeView.vue";
+
+import PostView from "../views/PostView.vue";
 import PostArticle from "../views/PostArticle.vue";
 import PostList from "../views/PostList.vue";
 
@@ -8,13 +11,20 @@ Vue.use(VueRouter);
 
 const routes = [
   {
-    path: "/docs/*",
-    component: PostArticle
-  },
-  {
-    path: "/dev/postlist",
-    alias: ["/tags/*", "/categories/*"],
-    component: PostList
+    path: "/dev/post",
+    component: PostView,
+    children: [
+      {
+        path: "article",
+        alias: "/docs/*",
+        component: PostArticle
+      },
+      {
+        path: "list",
+        alias: ["/tags/*", "/categories/*"],
+        component: PostList
+      }
+    ]
   },
   {
     path: "*",
@@ -25,7 +35,15 @@ const routes = [
 const router = new VueRouter({
   mode: "history",
   base: process.env.BASE_URL,
-  routes
+  routes,
+  scrollBehavior(to, from, savedPosition) {
+    // console.log("router scrollBehavior:", to, from, savedPosition);
+    if (savedPosition) {
+      return savedPosition;
+    } else {
+      return { x: 0, y: 0 };
+    }
+  }
 });
 
 export default router;

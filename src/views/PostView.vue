@@ -1,7 +1,7 @@
 <template>
   <base-view>
     <div class="doc-container">
-      <slot />
+      <router-view />
 
       <nav class="mark">
         <h4 style="margin-bottom: .5rem;">Categories</h4>

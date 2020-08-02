@@ -1,5 +1,5 @@
 +++
-tags = ["data-structure", "tricks"]
+tags = ["data structures", "tricks"]
 +++
 
 
