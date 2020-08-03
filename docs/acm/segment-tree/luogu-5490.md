@@ -4,7 +4,7 @@ tags = ["data structures"]
 
 # 洛谷-P5490 【模板】扫描线
 
-求 nnn 个矩形的面积并。
+求 $n$ 个矩形的面积并。
 
 ## Input
 

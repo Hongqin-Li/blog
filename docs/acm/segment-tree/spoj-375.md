@@ -2,7 +2,7 @@
 tags = ["data structures"]
 +++
 
-#
+# SPOJ-375 QTREE - Query on a tree
 
 You are given a tree (an acyclic undirected connected graph) with $N$ nodes, and edges numbered $1, 2, 3...N-1$.
 
