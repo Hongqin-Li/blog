@@ -5,6 +5,19 @@ description = "A divide-and-conquer approach breaks the problem into several sub
 [dp]
 title = "Dynamic Programming"
 description = "Dynamic programming, like the divide-and-conquer method, solves problems by combining the solutions to subproblems. A dynamic-programming algorithm solves each subproblem just once and then saves its answer in a table, thereby avoiding the work of recomputing the answer every time it solves each subproblem."
+[bitmask-dp]
+title = "Bitmask Dynamic Programming"
+description = ""
+[digit-dp]
+title = "Dynamic Progrmming on Digits"
+description = ""
+[tree-based-dp]
+title = "Tree-based Dynamic Programming"
+description = ""
+[dp-optimization]
+title = "Dynamic Programming Optimization"
+description = ""
+
 [greedy]
 title = "Greedy Algorithm"
 description = "A greedy algorithm always makes the choice that looks best at the moment. That is, it makes a locally optimal choice in the hope that this choice will lead to a globally optimal solution."
@@ -28,6 +41,10 @@ description = "Breadth-first search expands the frontier between discovered and 
 
 [tricks]
 title = "Tricks"
+description = ""
+
+["number theory"]
+title = "Number theory"
 description = ""
 
 # Course

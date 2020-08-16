@@ -13,6 +13,7 @@
     <hr style="margin: 0;" />
 
     <div class="mark" v-html="html" style="margin: 0;" />
+    <Disqus />
   </main>
 </template>
 

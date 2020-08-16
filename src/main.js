@@ -4,11 +4,16 @@ import "./registerServiceWorker";
 import router from "./router";
 import store from "./store";
 import VueGtag from "vue-gtag";
+import VueDisqus from "vue-disqus";
 
 import "./scss/normalize.scss";
 import cfg from "./obj/config.json";
 
 Vue.config.productionTip = false;
+
+Vue.use(VueDisqus, {
+  shortname: cfg["disqus"]["shortname"]
+});
 
 Vue.use(
   VueGtag,
