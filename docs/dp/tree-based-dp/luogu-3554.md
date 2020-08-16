@@ -18,7 +18,7 @@ Byteasar's advisor has to pay each crew the same flat fee, regardless of how man
 
 The first line of the standard input contains a single integer $n (1\le N\le 300000)$, the number of towns in Byteotia. The towns are numbered from $1$ to $n$, where the number $1$ corresponds to the capital.
 
-The road network is described in $n-1$ lines that then follow. Each of those lines contains two integers,$a,b(1\le a,b\le N)$, separated by a single space, indicating that towns $a$ and $b$ are directly connected with a two way road.
+The road network is described in $n-1$ lines that then follow. Each of those lines contains two integers, $a,b(1\le a,b\le N)$, separated by a single space, indicating that towns $a$ and $b$ are directly connected with a two way road.
 
 ## Output
 
