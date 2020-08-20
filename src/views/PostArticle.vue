@@ -1,6 +1,6 @@
 <template>
   <main class="mark">
-    <h2 class="doc-title">{{ title }}</h2>
+    <h2 class="doc-title" id="title_id">{{ title }}</h2>
     <div class="doc-info">
       <div class="doc-info__span">
         <i class="material-icons">create</i><span>{{ time }}</span>
@@ -12,7 +12,12 @@
     </div>
     <hr style="margin: 0;" />
 
-    <div class="mark" v-html="html" style="margin: 0;" />
+    <div
+      v-scrollspy="handleScrollspy"
+      class="mark"
+      v-html="html"
+      style="margin: 0;"
+    />
     <Disqus />
   </main>
 </template>
@@ -32,9 +37,11 @@ export default {
   created() {
     this.refresh();
   },
+  beforeDestroy() {
+    this.$store.commit("updateScrollspy", {});
+  },
   watch: {
     $route: function(v) {
-      // console.log(this.$route.path, v);
       console.log("route", v);
       this.refresh();
     }
@@ -47,6 +54,10 @@ export default {
     html: ""
   }),
   methods: {
+    handleScrollspy(v) {
+      v.title = this.title;
+      this.$store.commit("updateScrollspy", v);
+    },
     refresh() {
       api.get(this.$route.path).then(d => {
         this.title = d["title"];

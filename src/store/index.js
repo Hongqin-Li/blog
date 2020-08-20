@@ -4,8 +4,14 @@ import Vuex from "vuex";
 Vue.use(Vuex);
 
 export default new Vuex.Store({
-  state: {},
-  mutations: {},
+  state: {
+    scrollspy: { headers: [], scrolli: -1 }
+  },
+  mutations: {
+    updateScrollspy(state, data) {
+      state.scrollspy = data;
+    }
+  },
   actions: {},
   modules: {}
 });
