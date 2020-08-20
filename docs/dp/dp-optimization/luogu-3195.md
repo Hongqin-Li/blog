@@ -73,7 +73,7 @@ Output 2:
 
 斜率优化 dp 例题
 
-首先写出状态转移方程 $f_i = \min_{0 \le j \l i} \{ f_j + \left( i - j - 1 - L - \sum_{k=j+1}^i{} C_k \right)^2\}$
+首先写出状态转移方程 $f_i = \min_{0 \le j < i} \left\{ f_j + \left( i - j - 1 - L - \sum_{k=j+1}^i{} C_k \right)^2\right\}$
 
 化简一下，暂时隐藏 $\min$，并令 $s_i = \sum_{i=1}^{i} c_i + i$，整理一下可得
 

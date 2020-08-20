@@ -46,6 +46,9 @@ description = ""
 ["number theory"]
 title = "Number theory"
 description = ""
+[Bezout]
+title = "Bezout's lemma"
+description = ""
 
 # Course
 [notes]
