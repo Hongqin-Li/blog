@@ -1,4 +1,3 @@
-import ScrollSpyNav from "./ScrollSpyNav";
 import throttle from "lodash/throttle";
 const assert = require("assert").strict;
 
@@ -9,8 +8,6 @@ const install = (Vue, option) => {
     maxLevel: 3
   };
   Object.assign(opt, option);
-
-  Vue.component("scrollspy-nav", ScrollSpyNav);
 
   Vue.directive("scrollspy", {
     bind(el, binding) {
