@@ -49,6 +49,9 @@ description = ""
 [Bezout]
 title = "Bezout's lemma"
 description = ""
+[Lucas]
+title = "Lucas's theorem"
+description = ""
 
 # Course
 [notes]

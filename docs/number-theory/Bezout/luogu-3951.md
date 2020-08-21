@@ -36,11 +36,11 @@ Output:
 
 $$
 \begin{aligned}
-\frac{kx_0 - kx_0 \bmod b}{b} \cdot a + k y_0 < 0 \\
-\iff (kx_0 - kx_0 \bmod b) \cdot a + kby_0 < 0 \\
-\iff k(ax_0 + by_0) < (kx_0\bmod b)\cdot a \\
-\iff k < (k\cdot \frac{1-by_0}{a} \bmod b) \cdot a\\
-\iff k < (k\cdot a^{-1} \bmod b) \cdot a
+\frac{kx_0 - kx_0 \bmod b}{b} \cdot a + k y_0 &< 0 \\
+(kx_0 - kx_0 \bmod b) \cdot a + kby_0 &< 0 \\
+k(ax_0 + by_0) &< (kx_0\bmod b)\cdot a \\
+k &< (k\cdot \frac{1-by_0}{a} \bmod b) \cdot a\\
+k &< (k\cdot a^{-1} \bmod b) \cdot a
 \end{aligned}
 $$
 
@@ -50,7 +50,7 @@ $$
 k^* = \max k \text{ s.t } k < (ka^{-1} \bmod b) \cdot a
 $$
 
-易知不等号右边小于等于 $(b-1)a$，故 $k^* < ab-a$。注意到不等式右边的值只能取 $0, a, ..., (b-1)a$，周期是 $b$，又由 $a, b$ 互质得 $a^{-1}, b$ 互质，可以证明 $\{ka^{-1} \mid k \in (ab-a-b, ab-a] \} = \{0, a, ..., (b-1)a=ab-a\}$，即两集合的元素恰好一一对应。而除掉最后一对 $k=ab-a\mapsto ab-a$，其他 $k$ 的取值 $(ab-a-b, ab-a)$ 时，对应 $ka^{-1}$ 的值属于 $[0, (b-2)a]$，不妨设 $a\ge b$，则可知这些 $k$ 都不符合约束不等式。于是进一步缩小了范围得到 $k^* <= ab-a-b-1$，由周期性（或者直接代入）可知，$k* = ab-a-b-1$ 确实可行，故答案即此。
+易知不等号右边小于等于 $(b-1)a$，故 $k^* < ab-a$。注意到不等式右边的值只能取 $0, a, ..., (b-1)a$，周期是 $b$，又由 $a, b$ 互质得 $a^{-1}, b$ 互质，可以证明 $\{ka^{-1} \mid k \in (ab-a-b, ab-a] \} = \{0, a, ..., (b-1)a=ab-a\}$，即两集合的元素恰好一一对应。而除掉最后一对 $k=ab-a\mapsto ab-a$，其他 $k$ 的取值 $(ab-a-b, ab-a)$ 时，对应 $ka^{-1}$ 的值属于 $[0, (b-2)a]$，不妨设 $a\ge b$，则可知这些 $k$ 都不符合约束不等式。于是进一步缩小了范围得到 $k^* <= ab-a-b-1$，由周期性（或者直接代入）可知，$k^* = ab-a-b-1$ 确实可行，故答案即此。
 
 
 ```cpp
