@@ -49,6 +49,9 @@ description = ""
 [Bezout]
 title = "Bezout's lemma"
 description = ""
+[CRT]
+title = "Chinese Remainder Theorem"
+description = ""
 [Lucas]
 title = "Lucas's theorem"
 description = ""
