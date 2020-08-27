@@ -8,13 +8,73 @@ tags = ["math", "notes"]
 
 ## 群论
 
-证明：加法循环群 $G = \left\{ka \bmod b \mid \forall k\right\}$的元素个数为$\frac{b}{gcd(a, b)}$
+半群：运算满足结合律和封闭性
+
+幺半群：含单位元的半群
+
+群：每个元素均存在逆元的幺半群
+
+等价关系：满足自反性、对称性、传递性的二元运算
 
 
 
-证明：子群的阶必是群阶的因子
+### 陪集分解
+
+**引理 1**    $G$ 是群，$A$ 是 $G$ 的子群，则对 $\forall g, h\in G$，定义关系 $g\sim h \iff gh^{-1}\in A$ 为等价关系，且 $g$ 的等价类为 $Ag$．
+
+此时每个等价类称为 $G$ 对于子群 A 的**右陪集**，类似可定义左陪集．显然 $G$ 可由一些互不相交的右陪集组成，即 $G = \bigcup_{g\in R} Ag$，其中 $R$ 称为**右陪集代表元系**，并令 $[G:A]=|R|$，于是有 $|G|=|A|\cdot [G:A]$．易得下述定理．
+
+**定理 1**    群$G$ 的子群的阶一定是 $|G|$ 的因子．
+
+**定理 2**    有限群 $G$ 中任意元素的阶必是 $|G|$ 的因子．
+
+**定理 3**    设 $g, h$ 是群 $G$ 中元素，若 $g$ 的阶为 $n$，则对每个正整数 $i$，$g^i$ 的阶是 $\frac{n}{(n, i)}$；若 $gh=hg$，$g, h$ 的阶分别为 $n, m$，且 $(n, m)=1$，则 $gh$ 的阶为 $nm$．
 
 
+
+**定理 4**    $A, B$ 为有限群 $G$ 的子集，则
+
+1. $|AB|=|A|\cdot |B|/|A\cap B|$；
+2. 若 $A$ 是 $B$ 的子集，则 $[G:A]=[G:B][B:A]$；
+3. $[G:A\cap B]\le [G:A][G:B]$，进而若 $[G:A]$ 和 $[G:B]$ 互素，则 $[G:A\cap B]=[G:A][G:B]$ 且 $AB=G$．
+
+**证明**    TODO
+
+
+
+定义
+
+
+
+
+
+习题：
+
+1. 若群 $G$ 中除单位元外每个元素的阶均为 $2$，则 $G$ 为可交换群．
+2. $p$（素数）阶群均是可交换群，且均同构于整数模 $p$ 加法群 $Z_p$．
+3. 非交换的群的最小阶为 $6$．
+4. 加法循环群 $G = \left\{ka \bmod b \mid \forall k\right\}$ 的元素个数为 $\frac{b}{gcd(a, b)}$．
+5. 素数阶群一定是循环群．
+
+
+
+### 循环群
+
+**定理**    在 $n$ 阶循环群 $G$ 中，对 $n$ 的每个正因子 $m$，阶为 $m$ 的元素恰好有 $\varphi(m)$ 个，由此证明等式 $\sum_{m|n} \varphi(m) = n$．
+
+**证明**    由于 $g^i$ 的阶为 $\frac{n}{gcd(n, i)}=m$，于是 $i$ 只能是 $1\frac{n}{m}, ..., m\frac{n}{m}$ 中系数与 $m$ 互质的数，即有 $\varphi(m)$ 个．
+
+
+
+**定理**    循环群 $G$ 的子群的阶互不相等，即每种阶数的子群至多只有一个
+
+**证明**    阶为 $d$ 的子群必为 $\left\{\left(a^{\frac{n}{d}}\right)^i\right\}$
+
+
+
+习题：
+
+1. 若 $G$ 是循环群，则其任意子群均是循环群，且若 $r$ 是 $|G|$ 的因子，则 $G$ 有且仅有一个 $r$ 阶子群．
 
 
 
@@ -44,7 +104,7 @@ tags = ["math", "notes"]
 
 例 1：$x\mid a, x\mid b\iff x \mid (a, b)$
 
-证：充分性显然，必要性由 $(a,b)_i = \min\{a_i, b_i\}$ 且 $x_i\le a_i, b_i$，故有 $x_i\le gcd_i$，即 $x\mid (a, b)$。
+证：充分性显然，必要性由 $(a,b)_i = \min\{a_i, b_i\}$ 且 $x_i\le a_i, b_i$，故有 $x_i\le gcd_i$，即 $x\mid (a, b)$．
 
 例 2：$(a, m)=(b, m)=1\iff (ab, m)=1$
 
@@ -60,7 +120,7 @@ tags = ["math", "notes"]
 
 #### 欧几里得算法
 
-易证 $gcd(a, b)\iff gcd(b\mod a, a)$
+易证 $gcd(a, b)\iff gcd(b-ka, a) \iff gcd(b\mod a, a)$
 
 
 
@@ -87,6 +147,8 @@ $$
 
 
 
+
+
 #### 裴蜀定理
 
 设$a, b\in Z$，则存在$x, y\in Z$，使得 $ax+by = gcd(a, b)$
@@ -107,9 +169,9 @@ $$
 
 欧拉函数：$\varphi(n)$ 代表「小于 $n$ 的正整数中和 $n$ 互质的数」的个数
 
-定理：若 $(m, n)=1$，则 $\varphi(mn)=\varphi(m)\varphi(n)$
+**定理**    若 $(m, n)=1$，则 $\varphi(mn)=\varphi(m)\varphi(n)$
 
-证明：令所有小于 $m$ 且与 $m$ 互质的正整数组成的集合为 $\Phi(m)$，也称为**最小正缩剩余系（Least Positive Reduced residue system）**，定义如下函数
+**证明**    令所有小于 $m$ 且与 $m$ 互质的正整数组成的集合为 $\Phi(m)$，也称为**最小正缩剩余系（Least Positive Reduced residue system）**，定义如下函数
 $$
 \begin{aligned}f:\Phi(m)\times \Phi(n) &\to \Phi(mn) \\(r, s)&\mapsto syn+rxm \bmod mn\\\end{aligned}
 $$
@@ -117,9 +179,9 @@ $$
 
 
 
-推论：$\varphi(n) = n \prod\limits_{p\mid n} \left(1-\frac{1}{p}\right)$，其中 $p$ 为质数
+**推论**    $\varphi(n) = n \prod\limits_{p\mid n} \left(1-\frac{1}{p}\right)$，其中 $p$ 为质数
 
-证明：易知若 $p$ 为质数，则 $\varphi(p^k)=p^k-p^{k-1}$，再结合上述定理质因子分解一下即可
+**证明**    易知若 $p$ 为质数，则 $\varphi(p^k)=p^k-p^{k-1}$，再结合上述定理质因子分解一下即可。也可以由[循环群的性质](#循环群)直接证明。
 
 
 
@@ -179,7 +241,7 @@ $$
 
 ### 中国剩余定理
 
-定理：同余方程组 $x\equiv b_i\bmod m_i(i=1, ..., n)$ 有解的充要条件是
+定理：同余方程组 $x\equiv a_i\bmod m_i(i=1, ..., n)$ 有解的充要条件是
 $$
 a_i \equiv a_j \bmod (m_i, m_j), i = 1, ..., n
 $$
@@ -197,21 +259,67 @@ $$
 \impliedby &a_i \equiv b \bmod (m_i, m_k) \,\text{ and }\, a_i \equiv b \bmod (m_i, m_{k+1}) 
 \end{aligned}
 $$
-又因为 $b\equiv a_k \bmod m_k$ 且 $a_i \equiv a_k \bmod (a_i, a_k)$（充分条件），故有最后一行中的第一项 $a_i\equiv b \bmod (m_i, m_k)$，同理可得第二项，于是假设成立，证毕。
+又因为 $b\equiv a_k \bmod m_k$ 且 $a_i \equiv a_k \bmod (a_i, a_k)$（充分条件），故有最后一行中的第一项 $a_i\equiv b \bmod (m_i, m_k)$，同理可得第二项，于是假设成立，证毕．（上述推导过程中用到的一些关于 gcd/lcm 的小定理可以自行证明一下）
 
-（上述推导过程中用到的一些关于 gcd/lcm 的小定理可以自行证明一下）
-
-注意到证明过程同时给出了求解过程，即每次取出两个方程求解（扩展欧几里得算法）、合并成一个，然后递归求解。
+注意到证明过程同时给出了求解过程，即每次取出两个方程求解（扩展欧几里得算法）、合并成一个，然后递归求解．
 
 
 
-众所周知的**中国剩余定理（Chinese Remainder Theorem）**就是上述定理中模数互质的特例。
+众所周知的**中国剩余定理（Chinese Remainder Theorem）**就是上述定理中模数互质的特例。不过我们可以直接写出表达式，令 $M_i = \frac{\prod m_k}{m_i}$，$y_i = M_i^{-1}\bmod m_i$（注意到 $(M_i, m_i)=1$，故逆元必存在），此时通解为 $x=\sum a_i M_i y_i + k[m_1, ..., m_n],\forall k\in Z$
 
 
 
-例：求 $\sum_{i=1}^{2016} i^{2016} \bmod 2016$
+例：证明 $\sum_{i=1}^{2016} i^{2016} \equiv 48 \bmod 2016$
 
 
+
+### Lucas 定理
+
+TODO
+
+
+
+### 原根
+
+由裴蜀定理，$\exists d\in N, a^d\equiv 1\bmod m\iff (a, m)=1$，称 $d$ 为 $a$ 模 $m$ 的阶
+
+考虑模 $m$ 的既约剩余系 $G=\{x\mid(x, m)=1, x\in [0, m)\}$，即所有小于 $m$ 且与 $m$ 互质的正整数，显然 $|G|=\varphi(m)$。其生成元称为 $m$ 的原根（原根有可能不存在）
+
+上述以 $a$ 为生成元的 $d$ 阶循环群是其子群，由定理「元素的阶必是群阶因子」知， $d\mid \varphi(m)$。
+
+
+
+定理：若 $m$ 存在原根，则 $m$ 一定是下列形式 $2, 4, p^k, 2p^k$，其中 $p$ 为奇素数
+
+TODO
+
+
+
+### 二次剩余
+
+**定义**    
+
+
+
+
+
+### 数论函数与积性函数
+
+**定义**    定义域为正整数（值域通常为复数）的函数 $f: N \to C$ 称为**数论函数（Number Theoretic Function）**．
+
+**定义**    若数论函数 $f$ 满足，对任意互质的 $m,n$ 有 $f(mn)=f(m)f(n)$，则称为**积性函数（Multiplicative  Function）**．
+
+**定理**    若$f$ 是积性函数，则 $F(n)=\sum_{d|n} f(d)$ 也是积性函数．
+
+
+
+### 莫比乌斯反演
+
+**定义**    $\mu(n)$
+
+**定理**    $F(n), f(n)$ 是定义在非负整数集合上的函数，且满足 $F(n)=\sum_{d|n} f(d)$，则 $f(n)=\sum_{d|n} \mu(d) F(\frac{n}{d})$
+
+**证明**
 
 Pocklington 定理
 

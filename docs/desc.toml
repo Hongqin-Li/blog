@@ -56,6 +56,16 @@ description = ""
 title = "Lucas's theorem"
 description = ""
 
+[combinatorics]
+title = "Combinatorics"
+description = ""
+[catalan-numbers]
+title = "Catalan Numbers"
+description = ""
+[stirling-numbers]
+title = "Stirling Numbers"
+description = ""
+
 # Course
 [notes]
 title = "Notes"
@@ -73,7 +83,7 @@ description = ""
 title = "Maching Learning"
 description = ""
 [probability]
-title = "Probablity"
+title = "Probability"
 description = ""
 [graph]
 title = "Graph"
