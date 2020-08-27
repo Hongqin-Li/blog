@@ -65,6 +65,9 @@ description = ""
 [stirling-numbers]
 title = "Stirling Numbers"
 description = ""
+[prufer]
+title = "Prufer Sequence"
+description = ""
 
 # Course
 [notes]
