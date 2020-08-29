@@ -43,6 +43,16 @@ description = "Breadth-first search expands the frontier between discovered and 
 title = "Tricks"
 description = ""
 
+[strings]
+title = "Strings"
+description = ""
+[kmp]
+title = "KMP Algorithm"
+desctiption = ""
+[suffix-array]
+title = "Suffix Array"
+description = ""
+
 ["number theory"]
 title = "Number theory"
 description = ""
