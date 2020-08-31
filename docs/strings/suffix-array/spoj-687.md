@@ -1,5 +1,5 @@
 +++
-tags = ["strings", "data-structures"]
+tags = ["strings", "data structures"]
 +++
 
 # SPOJ-687 REPEATS - Repeats
