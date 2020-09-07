@@ -28,6 +28,9 @@ description = "A data structure is a way to store and organize data in order to 
 ["segment-tree"]
 title = "Segment Tree"
 description = "A Segment Tree is a data structure that allows answering range queries over an array effectively, while still being flexible enough to allow modifying the array."
+[mo]
+title = "Mo's Algorithm"
+description = "" 
 
 [search]
 title = "Search"
@@ -48,7 +51,7 @@ title = "Strings"
 description = ""
 [kmp]
 title = "KMP Algorithm"
-desctiption = ""
+description = ""
 [suffix-array]
 title = "Suffix Array"
 description = ""
