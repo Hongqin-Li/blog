@@ -75,7 +75,8 @@ $mark-line-height: 1.4em;
   // line number
   table.codehilitetable {
     border: none;
-    overflow: auto;
+    overflow-x: auto;
+    overflow-y: visible;
     background-color: rgba(0, 0, 0, 0.03);
     font-size: 85%;
     code { font-size: inherit; }
@@ -162,7 +163,6 @@ $mark-line-height: 1.4em;
   pre {
     background-color: rgba(0, 0, 0, .03);
     padding: 0.8rem 1rem;
-    overflow: auto;
     > code, > tt { padding: 0; background-color: transparent; }
   }
 }
@@ -180,7 +180,8 @@ $mark-line-height: 1.4em;
     max-width: 100%;
     @include portrait {
       &, & thead tr { border-left: none; border-right: none; }
-      overflow: auto;
+      overflow-x: auto;
+      overflow-y: visible;
       width: 100%;
     }
 

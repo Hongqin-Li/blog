@@ -96,7 +96,9 @@ export default {
   top: 0;
   max-height: 100vh;
   overflow-y: auto;
-  padding-bottom: $medium-spacing;
+  ::v-deep div:last-child {
+    margin-bottom: $medium-spacing;
+  }
   @include no-scrollbar;
   @include portrait() {
     display: none;
