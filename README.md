@@ -1,41 +1,44 @@
-# blog
+# Blog
 
-[![CI Status](https://github.com/Hongqin-Li/blog/workflows/CI/badge.svg)](https://github.com/Hongqin-Li/blog/actions)
-[![Deploy Status](https://github.com/Hongqin-Li/blog/workflows/Deploy/badge.svg)](https://github.com/Hongqin-Li/blog/actions)
+[![CI Status](../../workflows/CI/badge.svg)](../../actions)
+[![Deploy Status](../../workflows/Deploy/badge.svg)](../../actions)
 
+Hi, welcome to my personal blog!
 
 ## Features
-- [-] tag/archive/category list
-- [-] Support Google Analytics
-- archive time line
-- home
 
-## Google Analytics Setup
+- [x] Support tag/archive/category list
+- [x] Support Google Analytics
+- [ ] Archive time line
+- [ ] Home page
 
-1. Fill in id and view_id fields in docs/config.toml
-2. Get the json keyfile from []() and save it to ga.json
-3. `cat ga.json | base64 -w 0 | cat <(echo -n "export GA_API_BASE64=") - > ga.sh`
-4. `source ga.sh`
+## Setup
 
-## Project setup
+### Install dependencies
 
-npm install
-```
+1. Python3 is required to parse and compile markdown files. It's recommended to install [Anaconda](https://www.anaconda.com/) to manage different python versions.
+2. npm is required for frontend development.
+3. After setting up python3 and npm, run `make install` to install both python and npm dependencies.
 
-### Compiles and hot-reloads for development
-```
-npm run serve
-```
+### Google Analytics
 
-### Compiles and minifies for production
-```
-npm run build
-```
+1. Fill in id and view_id fields in `docs/config.toml`.
+2. Get the json keyfile from [Google APIs - Credentials](https://console.developers.google.com/apis/credentials) and save it to `ga.json`.
+3. Convert to a base64 environment variable by `cat ga.json | base64 | tr -d \\n | cat <(echo -n "export GA_API_BASE64=") - > ga.sh`.
+4. Export the created environment variable by `source ga.sh`.
+5. In the github repo, goto Settings -> Secrets -> New secret and add this environment variable, which will be used by github actions for deployment.
+6. comment out `python $(GA_PARSER) --config $(CONFIG) -o $(GA_OBJ)` in Makefile to disable GA tracing, since we don't need to keep track of the hit count during development.
 
-### Lints and fixes files
-```
-npm run lint
-```
+### Disqus
 
-### Customize configuration
-See [Configuration Reference](https://cli.vuejs.org/config/).
+Fill in the shortname field in `docs/config.toml`.
+
+## Development
+
+### Start local server
+
+Run `make dev` to start the local server at `http://localhost:8089/`. Then view the website by entering this url in browser.
+
+### Development and commit
+
+TODO
