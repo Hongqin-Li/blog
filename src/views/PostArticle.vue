@@ -1,26 +1,29 @@
 <template>
-  <post-view>
-    <main class="mark">
-      <h2 class="doc-title">{{ title }}</h2>
-      <div class="doc-info">
-        <div class="doc-info__span">
-          <i class="material-icons">create</i><span>{{ time }}</span>
-        </div>
-        <div class="doc-info__span">
-          <i class="material-icons">visibility</i><span>{{ nhits }}</span>
-        </div>
-        <div class="doc-tag"><base-tag :items="tags" /></div>
+  <main class="mark">
+    <h2 class="doc-title" id="title_id">{{ title }}</h2>
+    <div class="doc-info">
+      <div class="doc-info__span">
+        <i class="material-icons">create</i><span>{{ time }}</span>
       </div>
-      <hr style="margin: 0;" />
+      <div class="doc-info__span">
+        <i class="material-icons">visibility</i><span>{{ nhits }}</span>
+      </div>
+      <div class="doc-tag"><base-tag :items="tags" /></div>
+    </div>
+    <hr style="margin: 0;" />
 
-      <div class="mark" v-html="html" style="margin: 0;" />
-    </main>
-  </post-view>
+    <div
+      v-scrollspy="handleScrollspy"
+      class="mark"
+      v-html="html"
+      style="margin: 0;"
+    />
+    <Disqus />
+  </main>
 </template>
 
 <script>
 import BaseTag from "@/components/BaseTag";
-import PostView from "./PostView";
 
 import api from "@/obj/api";
 import ga from "@/obj/ga.json";
@@ -34,9 +37,11 @@ export default {
   created() {
     this.refresh();
   },
+  beforeDestroy() {
+    this.$store.commit("updateScrollspy", {});
+  },
   watch: {
     $route: function(v) {
-      // console.log(this.$route.path, v);
       console.log("route", v);
       this.refresh();
     }
@@ -49,6 +54,10 @@ export default {
     html: ""
   }),
   methods: {
+    handleScrollspy(v) {
+      v.title = this.title;
+      this.$store.commit("updateScrollspy", v);
+    },
     refresh() {
       api.get(this.$route.path).then(d => {
         this.title = d["title"];
@@ -66,13 +75,12 @@ export default {
           return r;
         });
         this.html = data;
-        this.tags = d["tags"].map(t => ({ name: t, to: `/tags/${t}` }));
+        this.tags = d["tags"].map(t => ({ name: t["name"], to: t["url"] }));
       });
     }
   },
   components: {
-    BaseTag,
-    PostView
+    BaseTag
   }
 };
 </script>
@@ -80,6 +88,7 @@ export default {
 <style lang="scss">
 .katex-display {
   overflow: auto hidden;
+  margin: 0;
 }
 </style>
 

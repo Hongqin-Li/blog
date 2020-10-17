@@ -1,7 +1,7 @@
 <template>
   <base-view>
     <div class="doc-container">
-      <slot />
+      <router-view />
 
       <nav class="mark">
         <h4 style="margin-bottom: .5rem;">Categories</h4>
@@ -10,6 +10,12 @@
         <div class="base-tag-container">
           <base-tag :items="navTags" />
         </div>
+        <base-toc
+          class="nav-toc"
+          :items="$store.state.scrollspy.headers"
+          :scrolli="$store.state.scrollspy.scrolli"
+          :title="$store.state.scrollspy.title"
+        />
       </nav>
 
       <back-to-top-button />
@@ -21,6 +27,7 @@
 import BaseView from "./BaseView";
 import BaseNav from "@/components/BaseNav";
 import BaseTag from "@/components/BaseTag";
+import BaseToc from "@/components/BaseToc";
 import BackToTopButton from "@/components/BackToTopButton";
 
 import api from "@/obj/api";
@@ -42,6 +49,7 @@ export default {
     BaseView,
     BaseNav,
     BaseTag,
+    BaseToc,
     BackToTopButton
   }
 };
@@ -71,7 +79,6 @@ export default {
   }
   > nav {
     flex-grow: 1;
-    overflow: hidden;
   }
 
   @include portrait() {
@@ -81,6 +88,20 @@ export default {
       margin-right: 0;
       max-width: 100vw;
     }
+  }
+}
+
+.nav-toc {
+  position: sticky;
+  top: 0;
+  max-height: 100vh;
+  overflow-y: auto;
+  ::v-deep div:last-child {
+    margin-bottom: $medium-spacing;
+  }
+  @include no-scrollbar;
+  @include portrait() {
+    display: none;
   }
 }
 

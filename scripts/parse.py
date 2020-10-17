@@ -34,6 +34,15 @@ def get_mtime(path):
     return out
 
 
+def name2url(s, prefix=""):
+    assert "  " not in s, \
+        f"Name '{s}' contains more than one consecutive spaces."
+    assert re.fullmatch(r"[\w -]+", s), \
+        f"Name '{s}' contains some non-Unicode word characters" \
+        "other than '-' and ' '."
+    return prefix + s.replace(" ", "-")
+
+
 def parse_header(s):
     match = re.search(r"\A\s*^[+]{3}[ \t]*\n(.*?)^[+]{3}[ \t]*\n(.*)",
                       s, flags=re.DOTALL | re.MULTILINE)
@@ -81,10 +90,13 @@ def parse1(path, parse_content=True):
                             ], extension_configs={
                               'codehilite': {
                                 'linenums': True,
+                                'guess_lang': False,
                               },
                             })
 
     assert t["tags"] is not None
+    t["tags"] = [{"name": t, "url": name2url(t, prefix="/tags/")}
+                 for t in t["tags"]]
 
     return t
 

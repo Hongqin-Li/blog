@@ -1,5 +1,5 @@
 +++
-tags = ["data-structure"]
+tags = ["data structures"]
 +++
 
 # 洛谷-P6327 区间加区间sin和

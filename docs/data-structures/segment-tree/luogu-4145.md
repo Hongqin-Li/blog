@@ -1,5 +1,5 @@
 +++
-tags = ["data-structure"]
+tags = ["data structures"]
 +++
 
 # 洛谷-P4145 上帝造题的七分钟2

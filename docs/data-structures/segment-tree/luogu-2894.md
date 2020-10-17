@@ -1,5 +1,5 @@
 +++
-tags = ["data-structure"]
+tags = ["data structures"]
 +++
 
 # 洛谷-P2894 [USACO08FEB]Hotel G

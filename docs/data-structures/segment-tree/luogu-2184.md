@@ -1,5 +1,5 @@
 +++
-tags = ["data-structure", "tricks"]
+tags = ["data structures", "tricks"]
 +++
 
 # 洛谷-P2184 贪婪大陆

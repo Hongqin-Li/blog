@@ -1,31 +1,30 @@
 <template>
-  <post-view>
-    <main class="mark" style="overflow: visible;">
-      <h2 class="doc-title">{{ title }}</h2>
-      <p class="doc-info">{{ description }}</p>
+  <main class="mark" style="overflow: visible;">
+    <h2 class="doc-title">{{ title }}</h2>
+    <p class="doc-info">{{ description }}</p>
 
-      <div
-        v-for="p in posts"
-        :key="p.url"
-        class="post-list-item full-width--portrait"
-      >
-        <span class="post-list-item__title">
-          <router-link :to="p.url">{{ p.title }}</router-link>
-          <i class="material-icons-round">keyboard_arrow_right</i>
-        </span>
-        <p>{{ p.excerpt }}</p>
-        <div class="post-list-item__tag">
-          <base-tag :items="p.tags.map(t => ({ name: t, to: `/tags/${t}` }))" />
-          <span>{{ p.updated_at.split("T")[0] }}</span>
-        </div>
+    <div
+      v-for="p in posts"
+      :key="p.url"
+      class="post-list-item full-width--portrait"
+    >
+      <span class="post-list-item__title">
+        <router-link :to="p.url">{{ p.title }}</router-link>
+        <i class="material-icons-round">keyboard_arrow_right</i>
+      </span>
+      <p>{{ p.excerpt }}</p>
+      <div class="post-list-item__tag">
+        <base-tag
+          :items="p.tags.map(t => ({ name: t['name'], to: t['url'] }))"
+        />
+        <span>{{ p.updated_at.split("T")[0] }}</span>
       </div>
-    </main>
-  </post-view>
+    </div>
+  </main>
 </template>
 
 <script>
 import BaseTag from "@/components/BaseTag";
-import PostView from "./PostView";
 
 import api from "@/obj/api";
 
@@ -54,8 +53,7 @@ export default {
     }
   },
   components: {
-    BaseTag,
-    PostView
+    BaseTag
   }
 };
 </script>

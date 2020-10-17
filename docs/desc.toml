@@ -5,16 +5,32 @@ description = "A divide-and-conquer approach breaks the problem into several sub
 [dp]
 title = "Dynamic Programming"
 description = "Dynamic programming, like the divide-and-conquer method, solves problems by combining the solutions to subproblems. A dynamic-programming algorithm solves each subproblem just once and then saves its answer in a table, thereby avoiding the work of recomputing the answer every time it solves each subproblem."
+[bitmask-dp]
+title = "Bitmask Dynamic Programming"
+description = ""
+[digit-dp]
+title = "Dynamic Progrmming on Digits"
+description = ""
+[tree-based-dp]
+title = "Tree-based Dynamic Programming"
+description = ""
+[dp-optimization]
+title = "Dynamic Programming Optimization"
+description = ""
+
 [greedy]
 title = "Greedy Algorithm"
 description = "A greedy algorithm always makes the choice that looks best at the moment. That is, it makes a locally optimal choice in the hope that this choice will lead to a globally optimal solution."
 
-[data-structure]
-title = "Date Structure"
+["data structures"]
+title = "Date Structures"
 description = "A data structure is a way to store and organize data in order to facilitate access and modifications. No single data structure works well for all purposes, and so it is important to know the strengths and limitations of several of them. Basic data structures include stack, queue, heap, hash table, binary search tree. More complicate ones include binary indexed tree, sparse table, disjoint set, persistent data structures."
-[segment-tree]
+["segment-tree"]
 title = "Segment Tree"
 description = "A Segment Tree is a data structure that allows answering range queries over an array effectively, while still being flexible enough to allow modifying the array."
+[mo]
+title = "Mo's Algorithm"
+description = "" 
 
 [search]
 title = "Search"
@@ -28,6 +44,42 @@ description = "Breadth-first search expands the frontier between discovered and 
 
 [tricks]
 title = "Tricks"
+description = ""
+
+[strings]
+title = "Strings"
+description = ""
+[kmp]
+title = "KMP Algorithm"
+description = ""
+[suffix-array]
+title = "Suffix Array"
+description = ""
+
+["number theory"]
+title = "Number theory"
+description = ""
+[Bezout]
+title = "Bezout's lemma"
+description = ""
+[CRT]
+title = "Chinese Remainder Theorem"
+description = ""
+[Lucas]
+title = "Lucas's theorem"
+description = ""
+
+[combinatorics]
+title = "Combinatorics"
+description = ""
+[catalan-numbers]
+title = "Catalan Numbers"
+description = ""
+[stirling-numbers]
+title = "Stirling Numbers"
+description = ""
+[prufer]
+title = "Prufer Sequence"
 description = ""
 
 # Course
@@ -47,7 +99,7 @@ description = ""
 title = "Maching Learning"
 description = ""
 [probability]
-title = "Probablity"
+title = "Probability"
 description = ""
 [graph]
 title = "Graph"
