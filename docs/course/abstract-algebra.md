@@ -133,13 +133,13 @@ $A$爲羣$G$的子羣，定義關系$\sim$，$\forall g, h \in G, g\sim h \Leftr
 - 由集合$X$生成的理想：環$R$中包含$X$的最小理想，記爲$（X）$
 
   > $$
-  > \begin{align}
+  > \begin{aligned}
   > ZX \doteq & \Big \{\sum m_i x_i \mid m_i\in Z^+, x_i \in X\Big\}\\
   > RX \doteq & \Big \{\sum r_i x_i \mid r_i\in R, x_i \in X\Big\}\\
   > XR \doteq & \Big \{\sum x_i r_i \mid r_i\in R, x_i \in X\Big\}\\
   > RXR \doteq & \Big \{\sum r_i x_i r_j \mid r_i,r_j \in R, x_i \in X\Big\}\\
   > X_1 + X_2 +\dots+X_n \doteq & \Big\{ x_1+x_2+\dots+x_n\mid x_i\in X_i, 1\leq i\leq n  \Big\}
-  > \end{align}
+  > \end{aligned}
   > $$
   >
   > 由理想的條件1知$ZX\sube(X)$，由條件2知$RX,XR,RXR\sube(X)$，故$ZX+RX+XR+RXR\sube (X)$。可以驗證$ZX+RX+XR+RXR$是理想，於是有

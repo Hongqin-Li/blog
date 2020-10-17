@@ -90,6 +90,7 @@ def parse1(path, parse_content=True):
                             ], extension_configs={
                               'codehilite': {
                                 'linenums': True,
+                                'guess_lang': False,
                               },
                             })
 
