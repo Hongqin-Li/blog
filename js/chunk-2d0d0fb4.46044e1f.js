@@ -1,0 +1,2 @@
+(window["webpackJsonp"]=window["webpackJsonp"]||[]).push([["chunk-2d0d0fb4"],{"69fa":function(e){e.exports=JSON.parse('{"name":"Chinese Remainder Theorem","description":"","items":[{"tags":[{"name":"number theory","url":"/tags/number-theory"}],"title":"NOI-2018 屠龙勇士","excerpt":"小 D 最近在网上发现了一款小游戏。游戏的规则如下：","updated_at":"2020-10-17T12:00:02+08:00","created_at":"2020-10-17T12:00:02+08:00","url":"/docs/number-theory/CRT/luogu-4774"}],"url":"/categories/CRT"}')}}]);
+//# sourceMappingURL=chunk-2d0d0fb4.46044e1f.js.map
