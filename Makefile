@@ -1,6 +1,8 @@
 BUILD_DIR ?= src/obj
 SRC_DIR ?= docs
 
+PYTHON := python3
+
 SCRIPT_DIR ?= scripts
 API_GENERATOR ?= $(SCRIPT_DIR)/genapi.py
 MD_PARSER ?= $(SCRIPT_DIR)/parse.py
@@ -19,21 +21,21 @@ GA_OBJ := $(BUILD_DIR)/ga.json
 .PHONY: install lint dev build clean all chmod
 
 all: $(OBJS) $(API_GENERATOR) $(DESC) $(CONFIG_OBJ) $(CONFIG) $(GA_PARSER)
-	python $(EXTRA_PARSER) $(SRCS) --config $(DESC) --output $(BUILD_DIR)
-	python $(API_GENERATOR) --api-dir $(BUILD_DIR) --src-dir $(SRC_DIR) -o ${BUILD_DIR}/api.js
-	python $(GA_PARSER) --config $(CONFIG) -o $(GA_OBJ)
+	$(PYTHON) $(EXTRA_PARSER) $(SRCS) --config $(DESC) --output $(BUILD_DIR)
+	$(PYTHON) $(API_GENERATOR) --api-dir $(BUILD_DIR) --src-dir $(SRC_DIR) -o ${BUILD_DIR}/api.js
+	$(PYTHON) $(GA_PARSER) --config $(CONFIG) -o $(GA_OBJ)
 
 $(CONFIG_OBJ): $(CONFIG) $(TOML_PARSER)
 	@$(MKDIR_P) $(dir $@)
-	cat $< | python $(TOML_PARSER) > $@
+	cat $< | $(PYTHON) $(TOML_PARSER) > $@
 
 $(BUILD_DIR)/%.json: %.md $(MD_PARSER)
 	@$(MKDIR_P) $(dir $@)
-	python $(MD_PARSER) $< -o $@
+	$(PYTHON) $(MD_PARSER) $< -o $@
 
 install:
-	pip install -r scripts/requirements.txt
-	pip install flake8 pytest
+	$(PYTHON) -m pip install -r scripts/requirements.txt
+	$(PYTHON) -m pip install flake8 pytest
 	npm install
 
 lint:
