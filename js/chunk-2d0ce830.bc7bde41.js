@@ -1,0 +1,2 @@
+(window["webpackJsonp"]=window["webpackJsonp"]||[]).push([["chunk-2d0ce830"],{6088:function(e){e.exports=JSON.parse('{"name":"Prufer Sequence","description":"","items":[{"tags":[{"name":"combinatorics","url":"/tags/combinatorics"}],"title":"HNOI-2004 树的计数","excerpt":"一个有 $n$ 个节点的树，设它的节点分别为 $v_1,v_2,\\\\ldots,v_n$，已知第 $i$ 个节点 $v_i$ 的度数为 $d_i$，问满足这样的条件的不同的树有多少棵。","updated_at":"2022-01-19T23:40:55+08:00","created_at":"2022-01-19T23:40:55+08:00","url":"/docs/combinatorics/prufer/luogu-2290"}],"url":"/categories/prufer"}')}}]);
+//# sourceMappingURL=chunk-2d0ce830.bc7bde41.js.map
