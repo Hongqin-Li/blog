@@ -1,2 +1,0 @@
-(window["webpackJsonp"]=window["webpackJsonp"]||[]).push([["chunk-2d22d76d"],{f838:function(s){s.exports=JSON.parse('{"name":"Distributed Systems","description":"","items":[{"tags":[{"name":"distributed systems","url":"/tags/distributed-systems"}],"title":"关于共识","excerpt":"假设系统状态关于 t 的函数为 s(t)，则共识算法就是满足如下性质的函数 f","updated_at":"2022-01-26T22:45:21+08:00","created_at":"2022-01-26T22:45:21+08:00","url":"/docs/distributed-systems/consensus"}],"url":"/tags/distributed-systems"}')}}]);
-//# sourceMappingURL=chunk-2d22d76d.8da1982d.js.map

@@ -1,2 +1,0 @@
-(window["webpackJsonp"]=window["webpackJsonp"]||[]).push([["chunk-2d2293d9"],{dd36:function(a){a.exports=JSON.parse('{"name":"Journal","description":"","items":[{"tags":[{"name":"journal","url":"/tags/journal"}],"title":"梦的序幕","excerpt":"昏黄的灯光，街上有车无人，月亮逐渐被遗忘，轮转切换的红绿灯。我突然停下了脚步，忘记了自己为什么会在这里，一个平平无奇的、空旷的大街上，但仿佛人们已经逃亡而去，而我徘徊着，不断回头，像随风飘落的枯叶一般。","updated_at":"2022-01-26T22:45:21+08:00","created_at":"2022-01-26T22:45:21+08:00","url":"/docs/journal/2021-01"}],"url":"/tags/journal"}')}}]);
-//# sourceMappingURL=chunk-2d2293d9.439455bd.js.map
